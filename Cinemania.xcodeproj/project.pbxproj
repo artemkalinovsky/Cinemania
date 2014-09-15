@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2D296229EC9ADA228A32619 /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29BBE2E5A83FF5024B8B8 /* Film.m */; };
+		B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D291316C2978983B5484DE /* MoviesDataController.m */; };
+		C876EFFA19C6FE27005F0225 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFF919C6FE27005F0225 /* Movie.m */; };
+		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
+		C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876F00519C71292005F0225 /* MovieTableViewCell.m */; };
 		C8C8342E19C3210500563D95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342D19C3210500563D95 /* Foundation.framework */; };
 		C8C8343019C3210500563D95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342F19C3210500563D95 /* CoreGraphics.framework */; };
 		C8C8343219C3210500563D95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8343119C3210500563D95 /* UIKit.framework */; };
@@ -38,6 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2D290B78E9A674FDA05B06A /* MoviesDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesDataController.h; sourceTree = "<group>"; };
+		B2D291316C2978983B5484DE /* MoviesDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesDataController.m; sourceTree = "<group>"; };
+		B2D299405EDC0FDD86EBF01A /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		B2D29BBE2E5A83FF5024B8B8 /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
+		C876EFF819C6FE27005F0225 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		C876EFF919C6FE27005F0225 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
+		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
+		C876F00419C71292005F0225 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
+		C876F00519C71292005F0225 /* MovieTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		C8C8342A19C3210500563D95 /* Cinemania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinemania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8C8342D19C3210500563D95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8C8342F19C3210500563D95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +104,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C876EFF519C6FCE8005F0225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C876EFF719C6FD0C005F0225 /* DAO */,
+				C876EFF619C6FCF5005F0225 /* Entities */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C876EFF619C6FCF5005F0225 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B2D29BBE2E5A83FF5024B8B8 /* Film.m */,
+				B2D299405EDC0FDD86EBF01A /* Film.h */,
+				C876EFF819C6FE27005F0225 /* Movie.h */,
+				C876EFF919C6FE27005F0225 /* Movie.m */,
+				C876EFFB19C6FE4A005F0225 /* TVShow.h */,
+				C876EFFC19C6FE4A005F0225 /* TVShow.m */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		C876EFF719C6FD0C005F0225 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				B2D291316C2978983B5484DE /* MoviesDataController.m */,
+				B2D290B78E9A674FDA05B06A /* MoviesDataController.h */,
+			);
+			path = DAO;
+			sourceTree = "<group>";
+		};
 		C8C8342119C3210400563D95 = {
 			isa = PBXGroup;
 			children = (
@@ -123,13 +169,14 @@
 		C8C8343519C3210500563D95 /* Cinemania */ = {
 			isa = PBXGroup;
 			children = (
-				C8C8343E19C3210500563D95 /* CinemaniaAppDelegate.h */,
-				C8C8343F19C3210500563D95 /* CinemaniaAppDelegate.m */,
+				C876EFF519C6FCE8005F0225 /* Model */,
 				C8C8344119C3210500563D95 /* Main.storyboard */,
 				C8C8344719C3210500563D95 /* CinemaniaMasterViewController.h */,
 				C8C8344819C3210500563D95 /* CinemaniaMasterViewController.m */,
 				C8C8344A19C3210500563D95 /* CinemaniaDetailViewController.h */,
 				C8C8344B19C3210500563D95 /* CinemaniaDetailViewController.m */,
+				C876F00419C71292005F0225 /* MovieTableViewCell.h */,
+				C876F00519C71292005F0225 /* MovieTableViewCell.m */,
 				C8C8344D19C3210500563D95 /* Images.xcassets */,
 				C8C8344419C3210500563D95 /* Cinemania.xcdatamodeld */,
 				C8C8343619C3210500563D95 /* Supporting Files */,
@@ -140,6 +187,8 @@
 		C8C8343619C3210500563D95 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8C8343E19C3210500563D95 /* CinemaniaAppDelegate.h */,
+				C8C8343F19C3210500563D95 /* CinemaniaAppDelegate.m */,
 				C8C8343719C3210500563D95 /* Cinemania-Info.plist */,
 				C8C8343819C3210500563D95 /* InfoPlist.strings */,
 				C8C8343B19C3210500563D95 /* main.m */,
@@ -266,9 +315,14 @@
 			files = (
 				C8C8344019C3210500563D95 /* CinemaniaAppDelegate.m in Sources */,
 				C8C8344C19C3210500563D95 /* CinemaniaDetailViewController.m in Sources */,
+				C876EFFA19C6FE27005F0225 /* Movie.m in Sources */,
 				C8C8344619C3210500563D95 /* Cinemania.xcdatamodeld in Sources */,
 				C8C8344919C3210500563D95 /* CinemaniaMasterViewController.m in Sources */,
 				C8C8343C19C3210500563D95 /* main.m in Sources */,
+				C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */,
+				B2D296229EC9ADA228A32619 /* Film.m in Sources */,
+				C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */,
+				B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +527,7 @@
 				C8C8346719C3210600563D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8C8346819C3210600563D95 /* Build configuration list for PBXNativeTarget "CinemaniaTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +536,7 @@
 				C8C8346A19C3210600563D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

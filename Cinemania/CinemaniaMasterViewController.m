@@ -9,9 +9,13 @@
 #import "CinemaniaMasterViewController.h"
 
 #import "CinemaniaDetailViewController.h"
+#import "MovieTableViewCell.h"
+#import "MoviesDataController.h"
+#import "Movie.h"
 
 @interface CinemaniaMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic, strong) MoviesDataController *movieDataController;
 @end
 
 @implementation CinemaniaMasterViewController
@@ -19,16 +23,18 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.movieDataController = [[MoviesDataController alloc] init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    /*self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.rightBarButtonItem = addButton;*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,26 +67,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+   // return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    /*id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];*/
+    return [self.movieDataController movieCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+    Movie *movie = [self.movieDataController movieAtIndex: indexPath.row];
+    cell.movieNameLabel.text=movie.name;
+    cell.movieRuntimeLabel.text=movie.runtime;
+    cell.movieRatingLabel.text=@"";
+    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,10 +119,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    /*if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
+    }*/
+    if ([[segue identifier] isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Movie *movie = [self.movieDataController movieAtIndex:indexPath.row];
+        [[segue destinationViewController] setDetailItem:movie];
     }
 }
 
@@ -215,8 +233,8 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    //NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
 }
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Movie;
 
 @interface CinemaniaDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Movie* detailItem;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
 @end
