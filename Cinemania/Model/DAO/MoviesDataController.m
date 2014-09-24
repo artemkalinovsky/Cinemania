@@ -5,51 +5,65 @@
 
 #import "MoviesDataController.h"
 #import "Movie.h"
+#import "ILMovieDBClient.h"
+
 @interface MoviesDataController()
 
-@property (nonatomic, readonly) NSMutableArray *movieList;
--(void) initializeWithDefaultMovies;
+@property (strong, nonatomic) NSMutableArray *movieList;
 
 @end
 
 
 @implementation MoviesDataController
 
+-(NSMutableArray*) movieList
+{
+    if(!_movieList) _movieList=[[NSMutableArray alloc]init];
+    return _movieList;
+}
+
 -(instancetype) init
 {
     self=[super init];
     if(self)
     {
-        _movieList=[[NSMutableArray alloc] init];
-        [self initializeWithDefaultMovies];
         return self;
     }
     return nil;
 }
 
--(void)initializeWithDefaultMovies
+-(void) fetchPopularMoviesWithParams:(NSDictionary*) params andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    [self addMovieWithName:@"Edge of Tomorrow"];
-    [self addMovieWithName:@"Captain America: The Winter Soldier"];
-    [self addMovieWithName:@"Maleficent"];
-    [self addMovieWithName:@"Godzilla"];
-    [self addMovieWithName:@"The Expendables 3"];
-    [self addMovieWithName:@"Divergent"];
-    [self addMovieWithName:@"Neighbors"];
-    [self addMovieWithName:@"The Prince"];
-    [self addMovieWithName:@"Frozen"];
-    [self addMovieWithName:@"Need for Speed"];
-}
+    //NSMutableArray* objectsArray = [NSMutableArray array];//???
+    [ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
+    [[ILMovieDBClient sharedClient] GET:kILMovieDBMoviePopular parameters:params block:^(id responseObject, NSError *error)
+    {
+        if (!error) {
+            NSLog(@"%@", responseObject);
+            
+            NSArray* dictsArray = [responseObject objectForKey:@"results"];
+            
+            
+            for (NSDictionary* dict in dictsArray)
+            {
+                Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:managedObjectContext];
+                //Get runtime for current movie
+               /* NSDictionary* _params = @{@"id": movie.filmID};
+                [[ILMovieDBClient sharedClient] GET:kILMovieDBMovie parameters:_params block:^(id responseObject, NSError *error)
+                {
+                    if (!error)
+                    {
+                        NSLog(@"%@", responseObject);
 
--(void)addMovieWithName:(NSString *)name
-{
-    Movie *movie=[[Movie alloc] initMovieWithName:name];
-    [self.movieList addObject:movie];
-}
-
-- (void)addMovieWithName:(NSString *)name summary:(NSString *)summary releaseDate:(NSDate *)releaseDate casts:(NSString *)casts posters:(NSData *)posters runtime:(NSDate *)runtime
-{
-    
+                        NSArray *dictsArray = [responseObject objectForKey:@"response"];
+                        [movie setFromServerResponse:dictsArray];
+                    }
+                }];*/
+                [self.movieList addObject:movie];
+            }
+            
+        }
+    }];
 }
 
 -(NSUInteger) movieCount

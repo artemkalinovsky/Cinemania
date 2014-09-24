@@ -12,29 +12,66 @@
 #import "MovieTableViewCell.h"
 #import "MoviesDataController.h"
 #import "Movie.h"
+#import "ILMovieDBClient.h"
 
 @interface CinemaniaMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @property (nonatomic, strong) MoviesDataController *movieDataController;
+@property (nonatomic, strong) NSMutableArray *movieList;
 @end
 
 @implementation CinemaniaMasterViewController
 
+-(NSMutableArray *)movieList
+{
+    if(!_movieList) _movieList=[[NSMutableArray alloc] init];
+    return _movieList;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.movieDataController = [[MoviesDataController alloc] init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
+    [[ILMovieDBClient sharedClient] GET:kILMovieDBMoviePopular parameters:nil block:^(id responseObject, NSError *error)
+    {
+        if (!error) {
+            NSLog(@"%@", responseObject);
 
-	// Do any additional setup after loading the view, typically from a nib.
+            NSArray* dictsArray = [responseObject objectForKey:@"results"];
+
+
+            for (NSDictionary* dict in dictsArray)
+            {
+                Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:self.managedObjectContext];
+                [self.movieList addObject:movie];
+            }
+
+        }
+    }];
+    /*
+    self.movieDataController = [[MoviesDataController alloc] init];
+    [self.movieDataController fetchPopularMoviesWithParams:nil andManagedObjectContext:self.managedObjectContext];
+*/
+    NSMutableArray* newPaths = [NSMutableArray array];
+    for (int i = 0; i < 20; i++)
+    {
+        [newPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+    }
+
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:newPaths withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView endUpdates];
+
+ 	// Do any additional setup after loading the view, typically from a nib.
     /*self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;*/
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,17 +112,19 @@
 {
     /*id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];*/
-    return [self.movieDataController movieCount];
+    //return [self.movieDataController movieCount];
+    return [self.movieList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    Movie *movie = [self.movieDataController movieAtIndex: indexPath.row];
-    cell.movieNameLabel.text=movie.name;
-    cell.movieRuntimeLabel.text=movie.runtime;
-    cell.movieRatingLabel.text=@"";
-    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
+    //Movie *movie = [self.movieDataController movieAtIndex: indexPath.row];
+    Movie *movie= (self.movieList)[(NSUInteger) indexPath.row];
+    cell.movieNameLabel.text=movie.originalTitle;
+    //cell.movieRuntimeLabel.text=movie.runtime;
+    cell.movieRatingLabel.text=[NSString stringWithFormat:@"%@",movie.voteAverage];
+    //cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
     return cell;
 }
 
@@ -179,7 +218,7 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    switch(type) {
+    switch((int)type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;

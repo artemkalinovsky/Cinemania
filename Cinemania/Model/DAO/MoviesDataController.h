@@ -9,9 +9,8 @@
 
 @interface MoviesDataController : NSObject
 
-- (NSUInteger)movieCount;
-- (Movie *)movieAtIndex:(NSUInteger)index;
-- (void)addMovieWithName:(NSString *)name;
-- (void)addMovieWithName:(NSString *)name summary:(NSString *)summary releaseDate:(NSDate *)releaseDate casts:(NSString *)casts posters:(NSData *)posters runtime:(NSDate *)runtime;
+- (NSUInteger) movieCount;
+- (Movie *) movieAtIndex:(NSUInteger)index;
+- (void) fetchPopularMoviesWithParams:(NSDictionary*) params andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

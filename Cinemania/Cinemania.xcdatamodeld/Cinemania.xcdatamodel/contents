@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Film" representedClassName="Film" isAbstract="YES" syncable="YES">
+        <attribute name="filmID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="originalTitle" attributeType="String" syncable="YES"/>
+        <attribute name="posterPath" attributeType="String" syncable="YES"/>
+        <attribute name="releaseDate" attributeType="Date" syncable="YES"/>
+        <attribute name="voteAverage" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Movie" representedClassName="Movie" parentEntity="Film" syncable="YES">
+        <attribute name="budget" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="casts" attributeType="Binary" syncable="YES"/>
+        <attribute name="overview" attributeType="String" syncable="YES"/>
+        <attribute name="revenue" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="runtime" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Film" positionX="-27" positionY="18" width="128" height="118"/>
+        <element name="Movie" positionX="-27" positionY="189" width="128" height="118"/>
     </elements>
 </model>

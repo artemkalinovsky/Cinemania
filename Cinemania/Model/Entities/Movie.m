@@ -2,30 +2,32 @@
 //  Movie.m
 //  Cinemania
 //
-//  Created by Artem Kalinovsky on 9/15/14.
+//  Created by Artem Kalinovsky on 9/22/14.
 //  Copyright (c) 2014 com.softserve. All rights reserved.
 //
 
 #import "Movie.h"
 
+
 @implementation Movie
 
--(instancetype)initMovieWithName:(NSString *)name
+@dynamic budget;
+@dynamic casts;
+@dynamic overview;
+@dynamic revenue;
+@dynamic runtime;
+
+
+-(instancetype) initWithServerResponse:(NSDictionary*)responseObject andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    self=[super init];
-    if(self)
+    self = [super initWithServerResponse:responseObject andManagedObjectContext:managedObjectContext];
+    if (self)
     {
-        self.name=name;
-        self.summary = @"";
-        self.diretor = @"";
-        self.casts = @"";
-        self.runtime = @"";
-        self.budget = [[NSDecimalNumber alloc] initWithFloat:0.0f];
-        self.revenue = [[NSDecimalNumber alloc] initWithFloat:0.0f];
-        self.releaseDate = [[NSDate alloc] init];
-        self.posters = [[NSData alloc] init];
+        //add runtime,casts, overview
         return self;
     }
     return nil;
 }
+
+
 @end

@@ -33,8 +33,8 @@
 
     if (self.detailItem) {
         //self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-        self.detailDescriptionLabel.text = self.detailItem.name;
-        self.title=self.detailItem.name;
+       // self.detailDescriptionLabel.text = self.detailItem.name;
+        //self.title=self.detailItem.name;
     }
 }
 
