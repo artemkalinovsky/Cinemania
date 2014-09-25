@@ -36,7 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
+    /*[ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
     [[ILMovieDBClient sharedClient] GET:kILMovieDBMoviePopular parameters:nil block:^(id responseObject, NSError *error)
     {
         if (!error) {
@@ -52,11 +52,10 @@
             }
 
         }
-    }];
-    /*
+    }];*/
+    
     self.movieDataController = [[MoviesDataController alloc] init];
     [self.movieDataController fetchPopularMoviesWithParams:nil andManagedObjectContext:self.managedObjectContext];
-*/
     NSMutableArray* newPaths = [NSMutableArray array];
     for (int i = 0; i < 20; i++)
     {

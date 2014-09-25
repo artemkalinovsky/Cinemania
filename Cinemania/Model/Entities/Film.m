@@ -2,7 +2,7 @@
 //  Film.m
 //  Cinemania
 //
-//  Created by Artem Kalinovsky on 9/22/14.
+//  Created by Artem Kalinovsky on 9/25/14.
 //  Copyright (c) 2014 com.softserve. All rights reserved.
 //
 
@@ -23,11 +23,11 @@
     self = [NSEntityDescription insertNewObjectForEntityForName:@"Film" inManagedObjectContext:managedObjectContext];
     if (self)
     {
-        [self setValue:responseObject[@"id"] forKey:@"filmID"];
-        [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
-        [self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];
-        //[self setValue:[responseObject objectForKey:@"release_date"] forKey:@"releaseDate"];
-        [self setValue:responseObject[@"vote_average"] forKey:@"voteAverage"];
+        /*[self setValue:responseObject[@"id"] forKey:@"filmID"];
+         [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
+         [self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];
+         [self setValue:[responseObject objectForKey:@"release_date"] forKey:@"releaseDate"];
+         [self setValue:responseObject[@"vote_average"] forKey:@"voteAverage"];*/
         return self;
     }
     return nil;

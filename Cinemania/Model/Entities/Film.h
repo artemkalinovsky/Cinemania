@@ -2,7 +2,7 @@
 //  Film.h
 //  Cinemania
 //
-//  Created by Artem Kalinovsky on 9/22/14.
+//  Created by Artem Kalinovsky on 9/25/14.
 //  Copyright (c) 2014 com.softserve. All rights reserved.
 //
 
@@ -18,7 +18,8 @@
 @property (nonatomic, retain) NSDate * releaseDate;
 @property (nonatomic, retain) NSNumber * voteAverage;
 
+
+-(instancetype) initWithServerResponse:(NSDictionary*)responseObject andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 -(NSString *)getFormatedReleaseDate:(NSDate *)releaseDate;
--(instancetype)initWithServerResponse:(NSDictionary*)responseObject andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

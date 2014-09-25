@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D291316C2978983B5484DE /* MoviesDataController.m */; };
+		C80FD30B19D4669700B04FBA /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD30A19D4669700B04FBA /* Actor.m */; };
+		C80FD30E19D46A5F00B04FBA /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD30D19D46A5F00B04FBA /* Film.m */; };
+		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
 		C81A20F019CC49EE00BE951E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C81A20DE19CC49EE00BE951E /* AFHTTPRequestOperation.m */; };
 		C81A20F119CC49EE00BE951E /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C81A20E019CC49EE00BE951E /* AFHTTPRequestOperationManager.m */; };
 		C81A20F219CC49EE00BE951E /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C81A20E219CC49EE00BE951E /* AFHTTPSessionManager.m */; };
@@ -29,8 +32,6 @@
 		C81B4D6419CC7F95003B99C7 /* ILMovieDBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B4D6019CC7F95003B99C7 /* ILMovieDBConstants.m */; };
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
 		C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876F00519C71292005F0225 /* MovieTableViewCell.m */; };
-		C8885D6F19D0669F007F49B1 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C8885D6E19D0669F007F49B1 /* Movie.m */; };
-		C8885D7219D066A0007F49B1 /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = C8885D7119D066A0007F49B1 /* Film.m */; };
 		C8C8342E19C3210500563D95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342D19C3210500563D95 /* Foundation.framework */; };
 		C8C8343019C3210500563D95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342F19C3210500563D95 /* CoreGraphics.framework */; };
 		C8C8343219C3210500563D95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8343119C3210500563D95 /* UIKit.framework */; };
@@ -64,6 +65,12 @@
 /* Begin PBXFileReference section */
 		B2D290B78E9A674FDA05B06A /* MoviesDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesDataController.h; sourceTree = "<group>"; };
 		B2D291316C2978983B5484DE /* MoviesDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesDataController.m; sourceTree = "<group>"; };
+		C80FD30919D4669700B04FBA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
+		C80FD30A19D4669700B04FBA /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
+		C80FD30C19D46A5F00B04FBA /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		C80FD30D19D46A5F00B04FBA /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
+		C80FD30F19D46A6000B04FBA /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		C80FD31019D46A6000B04FBA /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		C81A20DA19CC3AAE00BE951E /* rsz_metroui-apps-windows-moviemaker-icon-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rsz_metroui-apps-windows-moviemaker-icon-2x.png"; sourceTree = "<group>"; };
 		C81A20DD19CC49EE00BE951E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		C81A20DE19CC49EE00BE951E /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -110,10 +117,6 @@
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
 		C876F00419C71292005F0225 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
 		C876F00519C71292005F0225 /* MovieTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
-		C8885D6D19D0669F007F49B1 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
-		C8885D6E19D0669F007F49B1 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		C8885D7019D066A0007F49B1 /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
-		C8885D7119D066A0007F49B1 /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		C8C8342A19C3210500563D95 /* Cinemania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinemania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8C8342D19C3210500563D95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8C8342F19C3210500563D95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -258,10 +261,12 @@
 		C876EFF619C6FCF5005F0225 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				C8885D7019D066A0007F49B1 /* Film.h */,
-				C8885D7119D066A0007F49B1 /* Film.m */,
-				C8885D6D19D0669F007F49B1 /* Movie.h */,
-				C8885D6E19D0669F007F49B1 /* Movie.m */,
+				C80FD30C19D46A5F00B04FBA /* Film.h */,
+				C80FD30D19D46A5F00B04FBA /* Film.m */,
+				C80FD30F19D46A6000B04FBA /* Movie.h */,
+				C80FD31019D46A6000B04FBA /* Movie.m */,
+				C80FD30919D4669700B04FBA /* Actor.h */,
+				C80FD30A19D4669700B04FBA /* Actor.m */,
 				C876EFFB19C6FE4A005F0225 /* TVShow.h */,
 				C876EFFC19C6FE4A005F0225 /* TVShow.m */,
 			);
@@ -458,9 +463,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C81B4D6319CC7F95003B99C7 /* ILMovieDBClient.m in Sources */,
-				C8885D7219D066A0007F49B1 /* Film.m in Sources */,
+				C80FD30E19D46A5F00B04FBA /* Film.m in Sources */,
 				C81A20F519CC49EE00BE951E /* AFURLConnectionOperation.m in Sources */,
-				C8885D6F19D0669F007F49B1 /* Movie.m in Sources */,
 				C8C8344019C3210500563D95 /* CinemaniaAppDelegate.m in Sources */,
 				C81A20F419CC49EE00BE951E /* AFSecurityPolicy.m in Sources */,
 				C8C8344C19C3210500563D95 /* CinemaniaDetailViewController.m in Sources */,
@@ -470,6 +474,7 @@
 				C8C8344919C3210500563D95 /* CinemaniaMasterViewController.m in Sources */,
 				C8C8343C19C3210500563D95 /* main.m in Sources */,
 				C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */,
+				C80FD31119D46A6000B04FBA /* Movie.m in Sources */,
 				C81A212E19CC4B1100BE951E /* UIImageView+AFNetworking.m in Sources */,
 				C81A212F19CC4B1100BE951E /* UIProgressView+AFNetworking.m in Sources */,
 				C81A20F819CC49EE00BE951E /* AFURLSessionManager.m in Sources */,
@@ -478,6 +483,7 @@
 				C81A20F719CC49EE00BE951E /* AFURLResponseSerialization.m in Sources */,
 				C81A212D19CC4B1100BE951E /* UIButton+AFNetworking.m in Sources */,
 				C81A212B19CC4B1100BE951E /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				C80FD30B19D4669700B04FBA /* Actor.m in Sources */,
 				C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */,
 				C81A20F619CC49EE00BE951E /* AFURLRequestSerialization.m in Sources */,
 				C81A20F319CC49EE00BE951E /* AFNetworkReachabilityManager.m in Sources */,
