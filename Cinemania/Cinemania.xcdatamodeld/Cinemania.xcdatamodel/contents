@@ -5,7 +5,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="actors" inverseEntity="Movie" syncable="YES"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="actors" inverseEntity="Movie" syncable="YES"/>
     </entity>
     <entity name="Film" representedClassName="Film" isAbstract="YES" syncable="YES">
         <attribute name="filmID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -19,11 +19,11 @@
         <attribute name="overview" attributeType="String" syncable="YES"/>
         <attribute name="revenue" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="runtime" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Actor" inverseName="movie" inverseEntity="Actor" syncable="YES"/>
+        <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Actor" inverseName="movies" inverseEntity="Actor" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Actor" positionX="79" positionY="35" width="128" height="118"/>
         <element name="Film" positionX="-207" positionY="-262" width="128" height="118"/>
         <element name="Movie" positionX="-209" positionY="-72" width="128" height="103"/>
-        <element name="Actor" positionX="79" positionY="35" width="128" height="118"/>
     </elements>
 </model>
