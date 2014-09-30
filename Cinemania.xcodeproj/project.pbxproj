@@ -276,8 +276,8 @@
 		C876EFF719C6FD0C005F0225 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				B2D291316C2978983B5484DE /* MoviesDataController.m */,
 				B2D290B78E9A674FDA05B06A /* MoviesDataController.h */,
+				B2D291316C2978983B5484DE /* MoviesDataController.m */,
 			);
 			path = DAO;
 			sourceTree = "<group>";

@@ -8,9 +8,18 @@
 @class Movie;
 
 @interface MoviesDataController : NSObject
+@property (strong, nonatomic) NSMutableArray *movieList;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
+
++ (instancetype)sharedManager;
 - (NSUInteger) movieCount;
 - (Movie *) movieAtIndex:(NSUInteger)index;
-- (void) fetchPopularMoviesWithParams:(NSDictionary*) params andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (void) fetchPopularMoviesFromServerWithParams:(NSDictionary*) params;
+-(NSFetchedResultsController *)fetchMovies;
 
 @end

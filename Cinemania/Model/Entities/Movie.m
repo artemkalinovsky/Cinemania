@@ -18,12 +18,13 @@
 @dynamic runtime;
 @dynamic actors;
 
--(instancetype) initWithServerResponse:(NSDictionary*)responseObject andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+-(instancetype) initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    // self = [super initWithServerResponse:responseObject andManagedObjectContext:managedObjectContext];
-    self = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:managedObjectContext];
+    self = [super initWithServerResponse:responseObject andManagedObjectContext:managedObjectContext];
+
     if (self)
     {
+        self = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:managedObjectContext];
         [self setValue:responseObject[@"id"] forKey:@"filmID"];
         [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
         [self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];

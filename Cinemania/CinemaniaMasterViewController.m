@@ -12,21 +12,15 @@
 #import "MovieTableViewCell.h"
 #import "MoviesDataController.h"
 #import "Movie.h"
-#import "ILMovieDBClient.h"
 
 @interface CinemaniaMasterViewController ()
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-@property (nonatomic, strong) MoviesDataController *movieDataController;
-@property (nonatomic, strong) NSMutableArray *movieList;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @end
 
 @implementation CinemaniaMasterViewController
-
--(NSMutableArray *)movieList
-{
-    if(!_movieList) _movieList=[[NSMutableArray alloc] init];
-    return _movieList;
-}
 
 - (void)awakeFromNib
 {
@@ -36,42 +30,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*[ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
-    [[ILMovieDBClient sharedClient] GET:kILMovieDBMoviePopular parameters:nil block:^(id responseObject, NSError *error)
-    {
-        if (!error) {
-            NSLog(@"%@", responseObject);
-
-            NSArray* dictsArray = [responseObject objectForKey:@"results"];
-
-
-            for (NSDictionary* dict in dictsArray)
-            {
-                Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:self.managedObjectContext];
-                [self.movieList addObject:movie];
-            }
-
-        }
-    }];*/
-    
-    self.movieDataController = [[MoviesDataController alloc] init];
-    [self.movieDataController fetchPopularMoviesWithParams:nil andManagedObjectContext:self.managedObjectContext];
-    NSMutableArray* newPaths = [NSMutableArray array];
-    for (int i = 0; i < 20; i++)
-    {
-        [newPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-    }
-
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:newPaths withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView endUpdates];
-
- 	// Do any additional setup after loading the view, typically from a nib.
+    [self initialize];
+    // Do any additional setup after loading the view, typically from a nib.
     /*self.navigationItem.leftBarButtonItem = self.editButtonItem;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;*/
 
 }
+
+- (void)initialize
+{
+    [self addObservers];
+    [self setDefaults];
+}
+
+- (void) setDefaults
+{
+    [[MoviesDataController sharedManager] fetchPopularMoviesFromServerWithParams:nil];
+}
+
+- (void) addObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:) name:@"MoviesLoadComplete" object:nil];
+}
+
+- (void) moviesLoadComplete:(NSNotification *)data
+{
+    _fetchedResultsController = nil;
+    _fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,7 +68,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+/*- (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -97,9 +86,9 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-}
+}*/
 
-#pragma mark - Table View
+#pragma mark - Table View DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -111,19 +100,17 @@
 {
     /*id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];*/
-    //return [self.movieDataController movieCount];
-    return [self.movieList count];
+    return [[MoviesDataController sharedManager] movieCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    //Movie *movie = [self.movieDataController movieAtIndex: indexPath.row];
-    Movie *movie= (self.movieList)[(NSUInteger) indexPath.row];
+    Movie *movie=[[MoviesDataController sharedManager] movieAtIndex:indexPath.row];
     cell.movieNameLabel.text=movie.originalTitle;
-    //cell.movieRuntimeLabel.text=movie.runtime;
     cell.movieRatingLabel.text=[NSString stringWithFormat:@"%@",movie.voteAverage];
-    //cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
+    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
+    
     return cell;
 }
 
@@ -157,15 +144,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    /*if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
-    }*/
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Movie *movie = [self.movieDataController movieAtIndex:indexPath.row];
+        Movie *movie = [[MoviesDataController sharedManager] movieAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:movie];
     }
 }
@@ -174,38 +156,11 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
+    if (_fetchedResultsController == nil)
+    {
+        _fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
     }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-	     // Replace this implementation with code to handle the error appropriately.
-	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
+
     return _fetchedResultsController;
 }    
 
