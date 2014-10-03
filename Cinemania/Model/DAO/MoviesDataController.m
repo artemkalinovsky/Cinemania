@@ -4,6 +4,7 @@
 //
 
 #import "MoviesDataController.h"
+#import "TMDBClient.h"
 #import "Movie.h"
 
 @interface MoviesDataController()
@@ -19,9 +20,9 @@
 
 @implementation MoviesDataController
 
-/*@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;*/
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 + (instancetype)sharedManager
 {
@@ -41,82 +42,28 @@
     return _movieList;
 }
 
-
--(void) fetchPopularMoviesFromServerWithParams:(NSDictionary*) params
+-(void) fetchPopularMoviesFromServer
 {
-    /*NSString *str=@"http://api.themoviedb.org/3/movie/popular?api_key=ed2f89aa774281fcada8f17b73c8fa05";
-    NSURL *url=[NSURL URLWithString:str];
-    NSData *data=[NSData dataWithContentsOfURL:url];
-    NSError *error=nil;
-    id response=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];*/
-
-
-    NSString *str=@"http://api.themoviedb.org/3/movie/popular?api_key=ed2f89aa774281fcada8f17b73c8fa05";
-    NSURL *url=[NSURL URLWithString:str];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                         timeoutInterval:30.0];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-                    {
-                        if(data!=nil)
-                        {
-                            id json=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                            NSLog(@"Your JSON Object: %@", json);
-                            
-                           
-
-                            NSArray* dictsArray = [json objectForKey:@"results"];
-                            for (NSDictionary* dict in dictsArray)
-                            {
-                                Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:self.managedObjectContext];
-                                [self.movieList addObject:movie];
-                            }
-                            [self.managedObjectContext save:&error];
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"MoviesLoadComplete" object:nil];
-                            
-
- 
-                        }
-                        
-                    }];
-
-    /*NSLog(@"Your JSON Object: %@", response);
-    if(error!=nil)
-    {
-        NSLog(@"ERROR: %@",[error localizedDescription]);
-    }*/
-        /*NSMutableArray* objectsArray = [NSMutableArray array];//???
-    [ILMovieDBClient sharedClient].apiKey = @"ed2f89aa774281fcada8f17b73c8fa05";
-    [[ILMovieDBClient sharedClient] GET:kILMovieDBMoviePopular parameters:params block:^(id responseObject, NSError *error)
-    {
-        if (!error) {
-            NSLog(@"%@", responseObject);
-            
-            NSArray* dictsArray = [responseObject objectForKey:@"results"];
-            
-            
-            for (NSDictionary* dict in dictsArray)
+    static int pageNumber=1;
+    [[TMDBClient sharedManager] GET:TMDBMoviePopular withParameters:@{@"page":@(pageNumber)} usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
             {
-                Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:managedObjectContext];
-                //Get runtime for current movie
-                NSDictionary* _params = @{@"id": movie.filmID};
-                [[ILMovieDBClient sharedClient] GET:kILMovieDBMovie parameters:_params block:^(id responseObject, NSError *error)
+                if(data!=nil)
                 {
-                    if (!error)
+                    id json=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                    NSLog(@"Your JSON Object: %@", json);
+
+                    NSArray* dictsArray = [json objectForKey:@"results"];
+                    for (NSDictionary* dict in dictsArray)
                     {
-                        NSLog(@"%@", responseObject);
-
-                        NSArray *dictsArray = [responseObject objectForKey:@"response"];
-                        [movie setFromServerResponse:dictsArray];
+                        Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:self.managedObjectContext];
+                        [self.movieList addObject:movie];
+                        //[self.managedObjectContext save:&error];
                     }
-                }];
-                [self.movieList addObject:movie];
-
-            }
-            
-        }
-    }];*/
+                    [_managedObjectContext save:&error];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MoviesLoadComplete" object:nil];
+                }
+            }];
+    pageNumber++;
 }
 
 -(NSUInteger) movieCount
@@ -141,6 +88,15 @@
             abort();
         }
     }
+}
+
+- (NSArray*) getMovies
+{
+    NSFetchRequest *moviesRequest = [[NSFetchRequest alloc]initWithEntityName:@"Film"]; //entity name must be Movie!!!!
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:moviesRequest error:&error];
+
+    return results;
 }
 
 #pragma mark - Core Data stack
@@ -206,7 +162,7 @@
 
    //  * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
    //     @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES};
-        BOOL success = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL
+   /*     BOOL success = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL
                                                                        options:@{NSMigratePersistentStoresAutomaticallyOption:@YES,NSInferMappingModelAutomaticallyOption:@YES}
                                                                          error:&error];
         if (!success)
@@ -214,7 +170,7 @@
    //  Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
-        }
+        }*/
     }
 
     return _persistentStoreCoordinator;
@@ -255,8 +211,9 @@
     }
 
     return _fetchedResultsController;*/
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film"// why NOT Movie!!!!?????
                                               inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setFetchBatchSize:20];

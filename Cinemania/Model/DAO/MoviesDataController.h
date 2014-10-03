@@ -16,10 +16,11 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-+ (instancetype)sharedManager;
++ (instancetype) sharedManager;
 - (NSUInteger) movieCount;
 - (Movie *) movieAtIndex:(NSUInteger)index;
-- (void) fetchPopularMoviesFromServerWithParams:(NSDictionary*) params;
--(NSFetchedResultsController *)fetchMovies;
+- (void) fetchPopularMoviesFromServer;
+- (NSFetchedResultsController *) fetchMovies;
+- (NSArray*) getMovies;
 
 @end
