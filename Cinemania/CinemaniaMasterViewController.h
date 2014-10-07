@@ -12,6 +12,12 @@
 
 @interface CinemaniaMasterViewController : UITableViewController
 /*<NSFetchedResultsControllerDelegate>*/
+{
+@private
+    UIView *overlayView;
+    UIActivityIndicatorView* activityIndicator;
+    UIColor* tableViewSeparatorColor;
+}
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 

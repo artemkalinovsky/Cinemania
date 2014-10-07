@@ -4,11 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#define MOVIES_LOAD_COMPLETE @"MoviesLoadComplete"
 
 @class Movie;
 
 @interface MoviesDataController : NSObject
-@property (strong, nonatomic) NSMutableArray *movieList;
+
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -17,8 +18,6 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 + (instancetype) sharedManager;
-- (NSUInteger) movieCount;
-- (Movie *) movieAtIndex:(NSUInteger)index;
 - (void) fetchPopularMoviesFromServer;
 - (NSFetchedResultsController *) fetchMovies;
 - (NSArray*) getMovies;

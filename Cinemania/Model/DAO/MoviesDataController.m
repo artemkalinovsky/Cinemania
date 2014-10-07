@@ -7,6 +7,7 @@
 #import "TMDBClient.h"
 #import "Movie.h"
 
+
 @interface MoviesDataController()
 
 
@@ -36,11 +37,6 @@
 }
 
 #pragma mark - MoviesDataController Methods
--(NSMutableArray*) movieList
-{
-    if(!_movieList) _movieList=[[NSMutableArray alloc]init];
-    return _movieList;
-}
 
 -(void) fetchPopularMoviesFromServer
 {
@@ -55,25 +51,13 @@
                     NSArray* dictsArray = [json objectForKey:@"results"];
                     for (NSDictionary* dict in dictsArray)
                     {
-                        Movie* movie = [[Movie alloc] initWithServerResponse:dict andManagedObjectContext:self.managedObjectContext];
-                        [self.movieList addObject:movie];
-                        //[self.managedObjectContext save:&error];
+                        Movie* movie = [[Movie alloc] initWithServerResponse:dict andInsertInManagedObjectContext:self.managedObjectContext];
                     }
                     [_managedObjectContext save:&error];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MoviesLoadComplete" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MOVIES_LOAD_COMPLETE object:nil];
                 }
             }];
     pageNumber++;
-}
-
--(NSUInteger) movieCount
-{
-    return [self.movieList count];
-}
-
-- (Movie *)movieAtIndex:(NSUInteger)index
-{
-    return [self.movieList objectAtIndex:index];
 }
 
 - (void)saveContext
@@ -92,11 +76,34 @@
 
 - (NSArray*) getMovies
 {
-    NSFetchRequest *moviesRequest = [[NSFetchRequest alloc]initWithEntityName:@"Film"]; //entity name must be Movie!!!!
+    NSFetchRequest *moviesRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:moviesRequest error:&error];
 
     return results;
+}
+
+-(void) clearCache
+{
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+
+    /*NSManagedObjectContext *context =_managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+    NSError *error;
+    NSArray *movies = [context executeFetchRequest:request error:&error];
+    if (movies == nil)
+    {
+        // handle error
+    }
+    else
+    {
+        for (NSManagedObject *movie in movies)
+        {
+            [context deleteObject:movie];
+        }
+        [context save:&error];
+    }*/
 }
 
 #pragma mark - Core Data stack
@@ -139,6 +146,12 @@
 
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
 
+    static BOOL isFirstRun = YES;
+    if(isFirstRun)
+    {
+        [self clearCache];
+        isFirstRun = NO;
+    }
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
@@ -178,42 +191,8 @@
 
 -(NSFetchedResultsController *)fetchMovies
 {
-    /*if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-
-    [fetchRequest setSortDescriptors:sortDescriptors];
-
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-
-    NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-
-    return _fetchedResultsController;*/
-
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film"// why NOT Movie!!!!?????
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie"
                                               inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setFetchBatchSize:20];
@@ -232,14 +211,7 @@
               sectionNameKeyPath:@"releaseDate"
                        cacheName:@"Master"];
 
-
-
-
-//    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     NSError *error = nil;
-   /* NSFetchedResultsController *fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                                      managedObjectContext:[[MoviesDataController sharedManager] mainContext]
-                                                                                        sectionNameKeyPath:nil cacheName:@"Master"];*/
 
     if (![frc performFetch:&error])
     {

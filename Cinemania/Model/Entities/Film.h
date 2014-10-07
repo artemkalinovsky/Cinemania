@@ -18,8 +18,6 @@
 @property (nonatomic, retain) NSDate * releaseDate;
 @property (nonatomic, retain) NSNumber * voteAverage;
 
-
--(instancetype) initWithServerResponse:(NSDictionary*)responseObject andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
--(NSString *)getFormatedReleaseDate:(NSDate *)releaseDate;
+-(NSString *)getFormattedReleaseDate:(NSDate *)releaseDate;
 
 @end

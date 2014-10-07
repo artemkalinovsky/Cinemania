@@ -19,6 +19,9 @@
 @property (nonatomic, retain) NSNumber * revenue;
 @property (nonatomic, retain) NSNumber * runtime;
 @property (nonatomic, retain) NSSet *actors;
+
+-(instancetype) initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 @end
 
 @interface Movie (CoreDataGeneratedAccessors)

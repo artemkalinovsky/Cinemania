@@ -36,8 +36,22 @@
 
 - (void)initialize
 {
+    [self showActivityIndicator];
     [self addObservers];
     [self setDefaults];
+}
+
+-(void) showActivityIndicator
+{
+    tableViewSeparatorColor=self.tableView.separatorColor;
+    self.tableView.separatorColor = [UIColor clearColor];
+    overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.center = overlayView.center;
+    [overlayView addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    [self.tableView addSubview:overlayView];
 }
 
 - (void) setDefaults
@@ -54,16 +68,23 @@
 
 - (void) addObservers
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:) name:@"MoviesLoadComplete" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:) name:MOVIES_LOAD_COMPLETE object:nil];
 }
 
 - (void) moviesLoadComplete:(NSNotification *)data
 {
     self.fetchedResultsController = nil;
     self.fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
+    [self hideActivityIndicator];
     [self.tableView reloadData];
 }
 
+-(void) hideActivityIndicator
+{
+    [activityIndicator stopAnimating];
+    [overlayView removeFromSuperview];
+    self.tableView.separatorColor=tableViewSeparatorColor;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,31 +92,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count];
-   // return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
-    //return [[MoviesDataController sharedManager] movieCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     Movie *movie=[self.fetchedResultsController objectAtIndexPath:indexPath];
-   // Movie *movie=[[MoviesDataController sharedManager] movieAtIndex:indexPath.row];
     cell.movieNameLabel.text=movie.originalTitle;
-    cell.movieRatingLabel.text=[NSString stringWithFormat:@"%@",movie.voteAverage];
-    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormatedReleaseDate:movie.releaseDate]];
-    
+    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
+    cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
     return cell;
 }
 
@@ -214,5 +235,6 @@
     //NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
 }
+
 
 @end

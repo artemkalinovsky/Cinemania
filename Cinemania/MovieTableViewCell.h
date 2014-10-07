@@ -15,7 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *movieRuntimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieReleaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieFanRatingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *movieRatingLabel;
-
 
 @end

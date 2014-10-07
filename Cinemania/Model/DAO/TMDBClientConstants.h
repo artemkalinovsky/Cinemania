@@ -99,3 +99,7 @@ extern NSString * const TMDBChangesPerson;
 #pragma mark - Jobs
 
 extern NSString * const TMDBJobList;
+
+#pragma mark - Posters
+
+extern NSString * const TMDBPosters;

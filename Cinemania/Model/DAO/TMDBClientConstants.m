@@ -102,3 +102,7 @@ NSString * const TMDBChangesPerson = @"person/changes";
 #pragma mark - Jobs
 
 NSString * const TMDBJobList = @"job/list";
+
+#pragma mark - Posters
+
+NSString * const TMDBPosters= @"http://image.tmdb.org/t/p/original";
