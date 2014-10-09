@@ -68,7 +68,9 @@
 
 - (void) addObservers
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:) name:MOVIES_LOAD_COMPLETE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:)
+                                                 name:MoviesDataControllerMoviesLoadedNotification
+                                               object:nil];
 }
 
 - (void) moviesLoadComplete:(NSNotification *)data
@@ -236,5 +238,27 @@
     //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGPoint offset = scrollView.contentOffset;
+    CGRect bounds = scrollView.bounds;
+    CGSize size = scrollView.contentSize;
+    UIEdgeInsets inset = scrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    // NSLog(@"offset: %f", offset.y);
+    // NSLog(@"content.height: %f", size.height);
+    // NSLog(@"bounds.height: %f", bounds.size.height);
+    // NSLog(@"inset.top: %f", inset.top);
+    // NSLog(@"inset.bottom: %f", inset.bottom);
+    // NSLog(@"pos: %f of %f", y, h);
+
+    float reload_distance = 10;
+    if(y > h + reload_distance) {
+        NSLog(@"load more rows");
+        [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];
+    }
+}
 
 @end

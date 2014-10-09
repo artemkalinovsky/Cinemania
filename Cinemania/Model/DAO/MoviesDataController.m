@@ -7,10 +7,9 @@
 #import "TMDBClient.h"
 #import "Movie.h"
 
+NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataControllerMoviesLoadedNotification";
 
 @interface MoviesDataController()
-
-
 
 @property (readwrite, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readwrite, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -54,7 +53,7 @@
                         Movie* movie = [[Movie alloc] initWithServerResponse:dict andInsertInManagedObjectContext:self.managedObjectContext];
                     }
                     [_managedObjectContext save:&error];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:MOVIES_LOAD_COMPLETE object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MoviesDataControllerMoviesLoadedNotification object:nil];
                 }
             }];
     pageNumber++;
@@ -200,7 +199,7 @@
     // Create a sort descriptor for the request
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
             initWithKey:@"releaseDate"
-              ascending:YES
+              ascending:NO
                selector:@selector(localizedCaseInsensitiveCompare:)];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 

@@ -4,9 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#define MOVIES_LOAD_COMPLETE @"MoviesLoadComplete"
 
-@class Movie;
+extern NSString * const MoviesDataControllerMoviesLoadedNotification;
 
 @interface MoviesDataController : NSObject
 
