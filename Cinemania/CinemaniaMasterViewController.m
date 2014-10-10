@@ -239,25 +239,20 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)aScrollView
+                  willDecelerate:(BOOL)decelerate
 {
-    CGPoint offset = scrollView.contentOffset;
-    CGRect bounds = scrollView.bounds;
-    CGSize size = scrollView.contentSize;
-    UIEdgeInsets inset = scrollView.contentInset;
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
-    NSLog(@"offset: %f", offset.y);
-    NSLog(@"content.height: %f", size.height);
-    NSLog(@"bounds.height: %f", bounds.size.height);
-    NSLog(@"inset.top: %f", inset.top);
-    NSLog(@"inset.bottom: %f", inset.bottom);
-    NSLog(@"pos: %f of %f", y, h);
 
-    float reload_distance = 150;
-    if(y > h + reload_distance && h>0) {
-        NSLog(@"!!!!!!!! MORE MOVIES ADDED FROM SERVER !!!!!");
-       //[[MoviesDataController sharedManager] fetchPopularMoviesFromServer];
+    float reload_distance = 50;
+    if(y > h + reload_distance) {
+        [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];//load more movies from server
     }
 }
 
