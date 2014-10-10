@@ -247,17 +247,17 @@
     UIEdgeInsets inset = scrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
-    // NSLog(@"offset: %f", offset.y);
-    // NSLog(@"content.height: %f", size.height);
-    // NSLog(@"bounds.height: %f", bounds.size.height);
-    // NSLog(@"inset.top: %f", inset.top);
-    // NSLog(@"inset.bottom: %f", inset.bottom);
-    // NSLog(@"pos: %f of %f", y, h);
+    NSLog(@"offset: %f", offset.y);
+    NSLog(@"content.height: %f", size.height);
+    NSLog(@"bounds.height: %f", bounds.size.height);
+    NSLog(@"inset.top: %f", inset.top);
+    NSLog(@"inset.bottom: %f", inset.bottom);
+    NSLog(@"pos: %f of %f", y, h);
 
-    float reload_distance = 10;
-    if(y > h + reload_distance) {
-        NSLog(@"load more rows");
-        [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];
+    float reload_distance = 150;
+    if(y > h + reload_distance && h>0) {
+        NSLog(@"!!!!!!!! MORE MOVIES ADDED FROM SERVER !!!!!");
+       //[[MoviesDataController sharedManager] fetchPopularMoviesFromServer];
     }
 }
 
