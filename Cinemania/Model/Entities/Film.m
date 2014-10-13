@@ -18,11 +18,11 @@
 @dynamic voteAverage;
 
 
--(NSString *)getFormattedReleaseDate:(NSDate *)releaseDate
+- (NSString *)getFormattedReleaseDate:(NSDate *)releaseDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:(NSDateFormatterStyle) kCFDateFormatterMediumStyle];
-   // [dateFormatter setTimeStyle:(NSDateFormatterStyle) kCFDateFormatterShortStyle];//there's actually no time of release, only date
+    // [dateFormatter setTimeStyle:(NSDateFormatterStyle) kCFDateFormatterShortStyle];//there's actually no time of release, only date
     NSString *strDate = [dateFormatter stringFromDate:self.releaseDate];
     return  strDate;
 }

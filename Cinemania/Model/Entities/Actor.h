@@ -13,10 +13,10 @@
 
 @interface Actor : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * actorID;
-@property (nonatomic, retain) NSString * firstName;
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber *actorID;
+@property (nonatomic, retain) NSString *firstName;
+@property (nonatomic, retain) NSString *lastName;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *movies;
 @end
 

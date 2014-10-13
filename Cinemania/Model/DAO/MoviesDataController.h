@@ -16,9 +16,9 @@ extern NSString * const MoviesDataControllerMoviesLoadedNotification;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-+ (instancetype) sharedManager;
-- (void) fetchPopularMoviesFromServer;
-- (NSFetchedResultsController *) fetchMovies;
-- (NSArray*) getMovies;
++ (instancetype)sharedManager;
+- (void)fetchPopularMoviesFromServer;
+- (NSFetchedResultsController *)fetchMovies;
+- (NSArray *)getMovies;
 
 @end

@@ -18,7 +18,7 @@
 @dynamic runtime;
 @dynamic actors;
 
--(instancetype) initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     self = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:managedObjectContext];
     [self setValue:responseObject[@"id"] forKey:@"filmID"];
@@ -31,13 +31,13 @@
     [self setValue:@(0) forKey:@"revenue"];
     [self setValue:@(0) forKey:@"budget"];
     [self setValue:@(0) forKey:@"runtime"];
-        
+    
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     //2013-10-04
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate* releaseDate = [dateFormatter dateFromString:responseObject[@"release_date"]];
     [self setValue:releaseDate forKey:@"releaseDate"];
-
+    
     return self;
 }
 

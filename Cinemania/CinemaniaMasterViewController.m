@@ -7,7 +7,6 @@
 //
 
 #import "CinemaniaMasterViewController.h"
-
 #import "CinemaniaDetailViewController.h"
 #import "MovieTableViewCell.h"
 #import "MoviesDataController.h"
@@ -15,8 +14,11 @@
 
 @interface CinemaniaMasterViewController ()
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (strong, nonatomic) UIView *overlayView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) UIColor *tableViewSeparatorColor;
 
 @end
 
@@ -41,20 +43,20 @@
     [self setDefaults];
 }
 
--(void) showActivityIndicator
+- (void)showActivityIndicator
 {
-    tableViewSeparatorColor=self.tableView.separatorColor;
+    self.tableViewSeparatorColor=self.tableView.separatorColor;
     self.tableView.separatorColor = [UIColor clearColor];
-    overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.center = overlayView.center;
-    [overlayView addSubview:activityIndicator];
-    [activityIndicator startAnimating];
-    [self.tableView addSubview:overlayView];
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.tableView addSubview:self.overlayView];
 }
 
-- (void) setDefaults
+- (void)setDefaults
 {
     if ([[[MoviesDataController sharedManager] getMovies] count] == 0)
     {
@@ -66,14 +68,14 @@
     }
 }
 
-- (void) addObservers
+- (void)addObservers
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:)
                                                  name:MoviesDataControllerMoviesLoadedNotification
                                                object:nil];
 }
 
-- (void) moviesLoadComplete:(NSNotification *)data
+- (void)moviesLoadComplete:(NSNotification *)data
 {
     self.fetchedResultsController = nil;
     self.fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
@@ -81,11 +83,11 @@
     [self.tableView reloadData];
 }
 
--(void) hideActivityIndicator
+- (void)hideActivityIndicator
 {
-    [activityIndicator stopAnimating];
-    [overlayView removeFromSuperview];
-    self.tableView.separatorColor=tableViewSeparatorColor;
+    [self.activityIndicator stopAnimating];
+    [self.overlayView removeFromSuperview];
+    self.tableView.separatorColor=self.tableViewSeparatorColor;
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,7 +96,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) dealloc
+- (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -130,12 +132,14 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
         NSError *error = nil;
-        if (![context save:&error]) {
+        if (![context save:&error])
+        {
              // Replace this implementation with code to handle the error appropriately.
              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -172,72 +176,6 @@
     return _fetchedResultsController;
 }    
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch((int)type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    //NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)aScrollView
@@ -251,7 +189,8 @@
     float h = size.height;
 
     float reload_distance = 50;
-    if(y > h + reload_distance) {
+    if(y > h + reload_distance)
+    {
         [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];//load more movies from server
     }
 }

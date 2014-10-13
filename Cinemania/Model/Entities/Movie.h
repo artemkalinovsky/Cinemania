@@ -14,13 +14,13 @@
 
 @interface Movie : Film
 
-@property (nonatomic, retain) NSNumber * budget;
-@property (nonatomic, retain) NSString * overview;
-@property (nonatomic, retain) NSNumber * revenue;
-@property (nonatomic, retain) NSNumber * runtime;
+@property (nonatomic, retain) NSNumber *budget;
+@property (nonatomic, retain) NSString *overview;
+@property (nonatomic, retain) NSNumber *revenue;
+@property (nonatomic, retain) NSNumber *runtime;
 @property (nonatomic, retain) NSSet *actors;
 
--(instancetype) initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 

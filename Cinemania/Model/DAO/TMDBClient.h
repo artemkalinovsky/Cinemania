@@ -14,6 +14,6 @@ typedef void (^TMDBClientResponseBlock)(NSURLResponse *response, NSData *data, N
 @interface TMDBClient : NSObject
 
 + (instancetype)sharedManager;
--(void) GET:(NSString *)path withParameters:(NSDictionary *)parameters usingResponseBlock:(TMDBClientResponseBlock)block;
+- (void)getMoviesFromCategory:(NSString *)categoryPath withParameters:(NSDictionary *)parameters usingResponseBlock:(TMDBClientResponseBlock)block;
 
 @end

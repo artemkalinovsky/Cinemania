@@ -31,16 +31,16 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
     dispatch_once(&onceToken, ^{
         moviesDataController = [[self alloc] init];
     });
-
+    
     return moviesDataController;
 }
 
 #pragma mark - MoviesDataController Methods
 
--(void) fetchPopularMoviesFromServer
+- (void)fetchPopularMoviesFromServer
 {
     static int pageNumber=1;
-    [[TMDBClient sharedManager] GET:TMDBMoviePopular withParameters:@{@"page":@(pageNumber)} usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
+    [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMoviePopular withParameters:@{@"page":@(pageNumber)} usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
             {
                 if(data!=nil)
                 {
@@ -63,8 +63,10 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+    if (managedObjectContext != nil)
+    {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
+        {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -73,7 +75,7 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
     }
 }
 
-- (NSArray*) getMovies
+- (NSArray *)getMovies
 {
     NSFetchRequest *moviesRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     NSError *error = nil;
@@ -82,7 +84,7 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
     return results;
 }
 
--(void) clearCache
+- (void)clearCache
 {
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
     [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
@@ -111,12 +113,14 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext != nil) {
+    if (_managedObjectContext != nil)
+    {
         return _managedObjectContext;
     }
 
     NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-    if (coordinator != nil) {
+    if (coordinator != nil)
+    {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
@@ -127,7 +131,8 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil) {
+    if (_managedObjectModel != nil)
+    {
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Cinemania" withExtension:@"momd"];
@@ -139,7 +144,8 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
+    if (_persistentStoreCoordinator != nil)
+    {
         return _persistentStoreCoordinator;
     }
 
@@ -188,7 +194,7 @@ NSString * const MoviesDataControllerMoviesLoadedNotification=@"MoviesDataContro
     return _persistentStoreCoordinator;
 }
 
--(NSFetchedResultsController *)fetchMovies
+- (NSFetchedResultsController *)fetchMovies
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie"

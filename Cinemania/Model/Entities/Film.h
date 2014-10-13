@@ -12,12 +12,12 @@
 
 @interface Film : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * filmID;
-@property (nonatomic, retain) NSString * originalTitle;
-@property (nonatomic, retain) NSString * posterPath;
-@property (nonatomic, retain) NSDate * releaseDate;
-@property (nonatomic, retain) NSNumber * voteAverage;
+@property (nonatomic, retain) NSNumber *filmID;
+@property (nonatomic, retain) NSString *originalTitle;
+@property (nonatomic, retain) NSString *posterPath;
+@property (nonatomic, retain) NSDate *releaseDate;
+@property (nonatomic, retain) NSNumber *voteAverage;
 
--(NSString *)getFormattedReleaseDate:(NSDate *)releaseDate;
+- (NSString *)getFormattedReleaseDate:(NSDate *)releaseDate;
 
 @end
