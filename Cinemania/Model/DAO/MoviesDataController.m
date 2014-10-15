@@ -31,6 +31,11 @@
     [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServer];
 }
 
+- (UIImage *)fetchPosterWithName:(NSString *)posterName
+{
+    return [[TMDBMoviesServerStore sharedManager] fetchMoviePosterWithFileName:posterName];
+}
+
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.

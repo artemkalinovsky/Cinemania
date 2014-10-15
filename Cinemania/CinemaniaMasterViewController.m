@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIColor *tableViewSeparatorColor;
+@property (strong, nonatomic) UIImage *loadedPoster;
 @end
 
 @implementation CinemaniaMasterViewController
@@ -25,6 +26,13 @@
     if(!_popularMovies)
         _popularMovies=[[NSArray alloc] init];
     return _popularMovies;
+}
+
+-(UIImage *)loadedPoster
+{
+    if(!_loadedPoster)
+        _loadedPoster=[[UIImage alloc] init];
+    return _loadedPoster;
 }
 
 - (void)awakeFromNib
@@ -70,6 +78,12 @@
     [self.tableView reloadData];
 }
 
+- (void)posterLoadingComplete
+{
+    self.loadedPoster=[[MoviesDataController sharedManager] fetchPosterWithName:@"/p03nS9t3pHiDUretGYdA3qKeixj.jpg"];
+    [self.tableView reloadData];
+}
+
 - (void)hideActivityIndicator
 {
     [self.activityIndicator stopAnimating];
@@ -102,6 +116,8 @@
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
+    //cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterWithName:movie.posterPath];
+    cell.moviePosterImageView.image=self.loadedPoster;
     return cell;
 }
 

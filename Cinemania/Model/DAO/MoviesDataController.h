@@ -12,10 +12,12 @@
 + (instancetype)sharedManager;
 - (NSArray *)fetchMoviesFromLocalStore;
 - (void)fetchPopularMoviesFromRemoteStore;
+- (UIImage *)fetchPosterWithName:(NSString *)posterName;
 - (NSURL *)applicationDocumentsDirectory;
 @end
 
 @protocol MoviesDataControllerDelegate
 @required
 - (void)moviesLoadingComplete;
+- (void)posterLoadingComplete;
 @end

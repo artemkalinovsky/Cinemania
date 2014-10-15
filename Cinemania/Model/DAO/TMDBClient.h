@@ -10,12 +10,15 @@
 #import "TMDBClientConstants.h"
 
 typedef void (^TMDBClientResponseBlock)(NSURLResponse *response, NSData *data, NSError *error);
-
+typedef UIImage* (^TMDBClientPosterResponseBlock)(NSURLResponse *response, NSData *data, NSError *error);
 @interface TMDBClient : NSObject
 
 + (instancetype)sharedManager;
 - (void)getMoviesFromCategory:(NSString *)categoryPath
                withParameters:(NSDictionary *)parameters
            usingResponseBlock:(TMDBClientResponseBlock)block;
+- (void)getMoviePosterFrom:(NSString *)postersRootPath
+        withPosterFileName:(NSString *)posterFileName
+        usingResponseBlock:(TMDBClientPosterResponseBlock)block;
 
 @end

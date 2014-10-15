@@ -7,6 +7,7 @@
 //
 
 #import "TMDBClient.h"
+#import "MoviesDataController.h"
 
 @implementation TMDBClient
 
@@ -40,6 +41,27 @@
         strURL= [strURL stringByAppendingString:tmpParam];
     }
     
+    NSURL *url=[NSURL URLWithString:strURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                         timeoutInterval:30.0];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         block(response,data,error);
+         
+     }];
+}
+
+- (void)getMoviePosterFrom:(NSString *)postersRootPath
+        withPosterFileName:(NSString *)posterFileName
+        usingResponseBlock:(TMDBClientPosterResponseBlock)block
+{
+    NSString *strURL=[NSString stringWithFormat:@"%@%@",postersRootPath,posterFileName];
     NSURL *url=[NSURL URLWithString:strURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
