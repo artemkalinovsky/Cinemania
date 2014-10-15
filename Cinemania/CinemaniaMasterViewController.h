@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
+#import "MoviesDataController.h"
 
-@interface CinemaniaMasterViewController : UITableViewController
-
-
+@interface CinemaniaMasterViewController : UITableViewController <MoviesDataControllerDelegate>
 @end

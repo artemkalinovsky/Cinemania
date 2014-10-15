@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2D293ABD046D3B6D93AA288 /* SqliteMoviesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */; };
+		B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */; };
 		B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D291316C2978983B5484DE /* MoviesDataController.m */; };
 		C80FD30E19D46A5F00B04FBA /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD30D19D46A5F00B04FBA /* Film.m */; };
 		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
@@ -46,8 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2D2908118A1A330898AA87E /* TMDBMoviesServerStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMoviesServerStore.h; sourceTree = "<group>"; };
 		B2D290B78E9A674FDA05B06A /* MoviesDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesDataController.h; sourceTree = "<group>"; };
 		B2D291316C2978983B5484DE /* MoviesDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesDataController.m; sourceTree = "<group>"; };
+		B2D297E8FD90F8D6AA85275A /* SqliteMoviesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMoviesStore.h; sourceTree = "<group>"; };
+		B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteMoviesStore.m; sourceTree = "<group>"; };
+		B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBMoviesServerStore.m; sourceTree = "<group>"; };
 		C80FD30C19D46A5F00B04FBA /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
 		C80FD30D19D46A5F00B04FBA /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		C80FD30F19D46A6000B04FBA /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
@@ -147,6 +153,10 @@
 				C894CAE319DC406000DA9697 /* TMDBClient.m */,
 				C894CAE519DC409000DA9697 /* TMDBClientConstants.h */,
 				C894CAE619DC409000DA9697 /* TMDBClientConstants.m */,
+				B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */,
+				B2D297E8FD90F8D6AA85275A /* SqliteMoviesStore.h */,
+				B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */,
+				B2D2908118A1A330898AA87E /* TMDBMoviesServerStore.h */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -343,6 +353,8 @@
 				C82C1B0019D55AFD00B38974 /* Actor.m in Sources */,
 				C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */,
 				B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */,
+				B2D293ABD046D3B6D93AA288 /* SqliteMoviesStore.m in Sources */,
+				B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,37 +9,39 @@
 #import "CinemaniaMasterViewController.h"
 #import "CinemaniaDetailViewController.h"
 #import "MovieTableViewCell.h"
-#import "MoviesDataController.h"
 #import "Movie.h"
 
 @interface CinemaniaMasterViewController ()
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-
+@property (strong, nonatomic) NSArray *popularMovies;
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIColor *tableViewSeparatorColor;
-
 @end
 
 @implementation CinemaniaMasterViewController
 
+- (NSArray *)popularMovies
+{
+    if(!_popularMovies)
+        _popularMovies=[[NSArray alloc] init];
+    return _popularMovies;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [MoviesDataController sharedManager].delegate=self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initialize];
-
 }
 
 - (void)initialize
 {
     [self showActivityIndicator];
-    [self addObservers];
     [self setDefaults];
 }
 
@@ -58,27 +60,12 @@
 
 - (void)setDefaults
 {
-    if ([[[MoviesDataController sharedManager] getMovies] count] == 0)
-    {
-        [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];
-    }
-    else
-    {
-        NSLog(@"load complete %@", [[MoviesDataController sharedManager] getMovies]);
-    }
+    [[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];
 }
 
-- (void)addObservers
+- (void)moviesLoadingComplete
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviesLoadComplete:)
-                                                 name:MoviesDataControllerMoviesLoadedNotification
-                                               object:nil];
-}
-
-- (void)moviesLoadComplete:(NSNotification *)data
-{
-    self.fetchedResultsController = nil;
-    self.fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
+    self.popularMovies=[[MoviesDataController sharedManager] fetchMoviesFromLocalStore];
     [self hideActivityIndicator];
     [self.tableView reloadData];
 }
@@ -96,28 +83,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return self.popularMovies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    Movie *movie=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    Movie *movie=[self.popularMovies objectAtIndex:indexPath.row];
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
@@ -128,24 +109,6 @@
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        NSError *error = nil;
-        if (![context save:&error])
-        {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }   
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,22 +122,10 @@
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Movie *movie = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Movie *movie = [self.popularMovies objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:movie];
     }
 }
-
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController == nil)
-    {
-        _fetchedResultsController = [[MoviesDataController sharedManager] fetchMovies];
-    }
-
-    return _fetchedResultsController;
-}    
 
 #pragma mark - UIScrollViewDelegate
 
@@ -191,7 +142,7 @@
     float reload_distance = 50;
     if(y > h + reload_distance)
     {
-        [[MoviesDataController sharedManager] fetchPopularMoviesFromServer];//load more movies from server
+        [[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];//load more movies from server
     }
 }
 

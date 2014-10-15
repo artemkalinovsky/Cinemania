@@ -5,20 +5,17 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const MoviesDataControllerMoviesLoadedNotification;
+@protocol MoviesDataControllerDelegate;
 
 @interface MoviesDataController : NSObject
-
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-
+@property (weak, nonatomic) id <MoviesDataControllerDelegate> delegate;
 + (instancetype)sharedManager;
-- (void)fetchPopularMoviesFromServer;
-- (NSFetchedResultsController *)fetchMovies;
-- (NSArray *)getMovies;
+- (NSArray *)fetchMoviesFromLocalStore;
+- (void)fetchPopularMoviesFromRemoteStore;
+- (NSURL *)applicationDocumentsDirectory;
+@end
 
+@protocol MoviesDataControllerDelegate
+@required
+- (void)moviesLoadingComplete;
 @end

@@ -21,7 +21,9 @@
     return moviesDatabaseClient;
 }
 
-- (void)getMoviesFromCategory:(NSString *)categoryPath withParameters:(NSDictionary *)parameters usingResponseBlock:(TMDBClientResponseBlock)block
+- (void)getMoviesFromCategory:(NSString *)categoryPath
+               withParameters:(NSDictionary *)parameters
+           usingResponseBlock:(TMDBClientResponseBlock)block
 {
     NSString *strURL=[NSString stringWithFormat:@"%@%@?api_key=%@",TMDBBaseURL,categoryPath,TMDBApiKey];
     if ([strURL rangeOfString:@":id"].location != NSNotFound)
