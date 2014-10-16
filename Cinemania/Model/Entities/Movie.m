@@ -22,7 +22,16 @@
 {
     self = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:managedObjectContext];
     [self setValue:responseObject[@"id"] forKey:@"filmID"];
-    [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
+    
+    if (responseObject[@"poster_path"] == (id)[NSNull null] || [responseObject[@"poster_path"] length] == 0)
+    {
+        [self setValue:@"no_path" forKey:@"posterPath"];
+    }
+    else
+    {
+       [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
+    }
+    
     [self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];
     [self setValue:responseObject[@"vote_average"] forKey:@"voteAverage"];
     //add runtime,casts, overview
@@ -32,10 +41,10 @@
     [self setValue:@(0) forKey:@"budget"];
     [self setValue:@(0) forKey:@"runtime"];
     
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //2013-10-04
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate* releaseDate = [dateFormatter dateFromString:responseObject[@"release_date"]];
+    NSDate *releaseDate = [dateFormatter dateFromString:responseObject[@"release_date"]];
     [self setValue:releaseDate forKey:@"releaseDate"];
     
     return self;

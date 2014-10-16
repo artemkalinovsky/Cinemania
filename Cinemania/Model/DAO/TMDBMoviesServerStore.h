@@ -11,5 +11,6 @@
 @interface TMDBMoviesServerStore : NSObject
 + (instancetype)sharedManager;
 - (void)fetchPopularMoviesFromServer;
-- (void)fetchMoviePosterWithFileName:(NSString *)posterFileName usingResponseBlock:(TMDBClientResponseBlock)block;
+- (void)fetchMoviePosterWithFileName:(NSString *)posterFileName
+                  usingResponseBlock:(TMDBClientResponseBlock)block;
 @end

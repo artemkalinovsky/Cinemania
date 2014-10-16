@@ -118,7 +118,7 @@
          {
              if (imgData)
              {
-                 [[MoviesDataController sharedManager] saveAtDiskMoviePoster:imgData WithName:movie.posterPath];
+                 [[MoviesDataController sharedManager] saveAtDiskMoviePoster:imgData withName:movie.posterPath];
                  UIImage *image = [UIImage imageWithData:imgData];
                  if (image)
                  {
@@ -131,24 +131,7 @@
                  
              }
          }];
-    }
-//    dispatch_async(kBgQueue, ^{
-//        NSString *urlStr=[NSString stringWithFormat:@"http://image.tmdb.org/t/p/w185%@",movie.posterPath];
-//        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
-//        if (imgData)
-//        {
-//            UIImage *image = [UIImage imageWithData:imgData];
-//            if (image)
-//            {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    MovieTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-//                    if (updateCell)
-//                        updateCell.moviePosterImageView.image = image;
-//                });
-//            }
-//        }
-//    });
-    
+    }    
     return cell;
 }
 

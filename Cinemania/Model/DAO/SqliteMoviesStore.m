@@ -26,25 +26,25 @@
 
 - (void)clearCache
 {
-    NSURL *storeURL = [[[MoviesDataController sharedManager] applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
-    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
+   [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
 
-    /*NSManagedObjectContext *context =_managedObjectContext;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
-    NSError *error;
-    NSArray *movies = [context executeFetchRequest:request error:&error];
-    if (movies == nil)
-    {
-        // handle error
-    }
-    else
-    {
-        for (NSManagedObject *movie in movies)
-        {
-            [context deleteObject:movie];
-        }
-        [context save:&error];
-    }*/
+//    NSManagedObjectContext *context =_managedObjectContext;
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+//    NSError *error;
+//    NSArray *movies = [context executeFetchRequest:request error:&error];
+//    if (movies == nil)
+//    {
+//        // handle error
+//    }
+//    else
+//    {
+//        for (NSManagedObject *movie in movies)
+//        {
+//            [context deleteObject:movie];
+//        }
+//        [context save:&error];
+//    }
 }
 
 #pragma mark - Core Data stack
@@ -89,14 +89,14 @@
         return _persistentStoreCoordinator;
     }
 
-    NSURL *storeURL = [[[MoviesDataController sharedManager] applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
-
-    static BOOL isFirstRun = YES;
-    if(isFirstRun)
-    {
-        [self clearCache];
-        isFirstRun = NO;
-    }
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
+//
+//    static BOOL isFirstRun = YES;
+//    if(isFirstRun)
+//    {
+//        [self clearCache];
+//        isFirstRun = NO;
+//    }
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
@@ -167,6 +167,14 @@
     }
 
     return frc;
+}
+
+#pragma mark - Application's Documents directory
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

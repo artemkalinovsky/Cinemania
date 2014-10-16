@@ -11,4 +11,5 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 + (instancetype)sharedManager;
 - (NSFetchedResultsController *)fetchMovies;
+- (void)clearCache;
 @end

@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7287044f-703f-4fe8-8a9c-dca034903e3c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Film.h" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Film.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Film.m" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Film.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cinemania.iws" />
@@ -32,17 +37,17 @@
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Film.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Film.m">
+      <file leaf-file-name="MoviesDataController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="222" max-vertical-offset="1095">
+              <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -58,31 +63,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Film.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Film.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBMoviesServerStore.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TMDBMoviesServerStore.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1365">
-              <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.9286872" vertical-offset="297" max-vertical-offset="1260">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CinemaniaMasterViewController.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Movie.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+              <caret line="41" column="43" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="43" />
+              <folding>
+                <element signature="e#200#216#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TMDBClient.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1290">
+              <caret line="26" column="60" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CinemaniaMasterViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5154639" vertical-offset="1095" max-vertical-offset="2970">
-              <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2715">
+              <caret line="120" column="61" selection-start-line="120" selection-start-column="61" selection-end-line="120" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -91,8 +108,18 @@
       <file leaf-file-name="SqliteMoviesStore.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2775">
               <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TMDBMoviesServerStore.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+              <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -101,28 +128,8 @@
       <file leaf-file-name="SqliteMoviesStore.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBClientConstants.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1695">
-              <caret line="26" column="26" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBClient.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1290">
-              <caret line="26" column="60" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -151,19 +158,19 @@
         <option value="$PROJECT_DIR$/Cinemania/CinemaniaAppDelegate.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.h" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h" />
         <option value="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.h" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.h" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Film.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Film.h" />
         <option value="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
       </list>
     </option>
   </component>
@@ -355,7 +362,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28412876" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28412876" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -622,13 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5424528" vertical-offset="0" max-vertical-offset="675">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/TVShow.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3697997" vertical-offset="0" max-vertical-offset="649">
@@ -667,66 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1065">
-          <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="13" column="88" selection-start-line="13" selection-start-column="88" selection-end-line="13" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1290">
-          <caret line="26" column="60" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1695">
           <caret line="26" column="26" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1365">
-          <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2655">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -755,10 +699,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="285">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2775">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1290">
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="41" column="43" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="43" />
+          <folding>
+            <element signature="e#200#216#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5154639" vertical-offset="1095" max-vertical-offset="2970">
-          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2715">
+          <caret line="120" column="61" selection-start-line="120" selection-start-column="61" selection-end-line="120" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1095">
+          <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9286872" vertical-offset="297" max-vertical-offset="1260">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>

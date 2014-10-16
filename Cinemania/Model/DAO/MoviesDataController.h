@@ -13,8 +13,8 @@
 - (NSArray *)fetchMoviesFromLocalStore;
 - (void)fetchPopularMoviesFromRemoteStore;
 - (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName;
-- (void)saveAtDiskMoviePoster:(NSData *) posterImageData WithName:(NSString *)posterName;
-- (NSURL *)applicationDocumentsDirectory;
+- (void)saveAtDiskMoviePoster:(NSData *)posterImageData
+                     withName:(NSString *)posterName;
 @end
 
 @protocol MoviesDataControllerDelegate

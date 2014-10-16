@@ -28,6 +28,12 @@
 
 - (void)fetchPopularMoviesFromRemoteStore
 {
+    static BOOL isFirstAppRun=YES;
+    if (isFirstAppRun)
+    {
+        [[SqliteMoviesStore sharedManager] clearCache];
+        isFirstAppRun=NO;
+    }
     [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServer];
 }
 
@@ -41,8 +47,11 @@
     return poster;
 }
 
-- (void)saveAtDiskMoviePoster:(NSData *) posterImageData WithName:(NSString *)posterName;
+- (void)saveAtDiskMoviePoster:(NSData *)posterImageData
+                     withName:(NSString *)posterName;
 {
+    if(!posterName)
+        return;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/images"];
@@ -58,11 +67,4 @@
 
 }
 
-#pragma mark - Application's Documents directory
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
 @end
