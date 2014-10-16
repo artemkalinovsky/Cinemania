@@ -5,18 +5,20 @@
 //  Created by Artem Kalinovsky on 9/12/14.
 //  Copyright (c) 2014 com.softserve. All rights reserved.
 //
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 
 #import "CinemaniaMasterViewController.h"
 #import "CinemaniaDetailViewController.h"
 #import "MovieTableViewCell.h"
 #import "Movie.h"
+#import "TMDBMoviesServerStore.h"
 
 @interface CinemaniaMasterViewController ()
 @property (strong, nonatomic) NSArray *popularMovies;
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIColor *tableViewSeparatorColor;
-@property (strong, nonatomic) UIImage *loadedPoster;
 @end
 
 @implementation CinemaniaMasterViewController
@@ -26,13 +28,6 @@
     if(!_popularMovies)
         _popularMovies=[[NSArray alloc] init];
     return _popularMovies;
-}
-
--(UIImage *)loadedPoster
-{
-    if(!_loadedPoster)
-        _loadedPoster=[[UIImage alloc] init];
-    return _loadedPoster;
 }
 
 - (void)awakeFromNib
@@ -78,12 +73,6 @@
     [self.tableView reloadData];
 }
 
-- (void)posterLoadingComplete
-{
-    self.loadedPoster=[[MoviesDataController sharedManager] fetchPosterWithName:@"/p03nS9t3pHiDUretGYdA3qKeixj.jpg"];
-    [self.tableView reloadData];
-}
-
 - (void)hideActivityIndicator
 {
     [self.activityIndicator stopAnimating];
@@ -116,8 +105,48 @@
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
-    cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterWithName:movie.posterPath];
-    //cell.moviePosterImageView.image=self.loadedPoster;
+    
+    if([[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath])
+    {
+        cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath];
+    }
+    else
+    {
+        [[TMDBMoviesServerStore sharedManager] fetchMoviePosterWithFileName:movie.posterPath usingResponseBlock:^(NSURLResponse *response, NSData *imgData, NSError *error)
+         {
+             if (imgData)
+             {
+                 [[MoviesDataController sharedManager] saveAtDiskMoviePoster:imgData WithName:movie.posterPath];
+                 UIImage *image = [UIImage imageWithData:imgData];
+                 if (image)
+                 {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         MovieTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                         if (updateCell)
+                             updateCell.moviePosterImageView.image = image;
+                     });
+                 }
+                 
+             }
+         }];
+    }
+//    dispatch_async(kBgQueue, ^{
+//        NSString *urlStr=[NSString stringWithFormat:@"http://image.tmdb.org/t/p/w185%@",movie.posterPath];
+//        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
+//        if (imgData)
+//        {
+//            UIImage *image = [UIImage imageWithData:imgData];
+//            if (image)
+//            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    MovieTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+//                    if (updateCell)
+//                        updateCell.moviePosterImageView.image = image;
+//                });
+//            }
+//        }
+//    });
+    
     return cell;
 }
 

@@ -47,18 +47,15 @@
     pageNumber++;
 }
 
-- (UIImage *)fetchMoviePosterWithFileName:(NSString *)posterFileName
+- (void)fetchMoviePosterWithFileName:(NSString *)posterFileName usingResponseBlock:(TMDBClientResponseBlock)block
 {
-    __block UIImage *poster;
-    poster = [UIImage imageNamed:posterFileName];
-    if(!poster)
-    {
         //HTTP Request
         [[TMDBClient sharedManager] getMoviePosterFrom:TMDBPosters
                                     withPosterFileName:posterFileName
-                                    usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
-         {
-             if(data!=nil)
+                                    usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                        block(response, data, error);
+                                    }];
+             /*if(data!=nil)
              {
                  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                  NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -72,12 +69,9 @@
                  }
                  NSString *localFilePath = [NSString stringWithFormat:@"%@%@",dataPath,posterFileName];
                  [data writeToFile:localFilePath atomically:YES];
-                 poster = [[UIImage alloc] initWithData:data];
+                // poster = [[UIImage alloc] initWithData:data];
              }
-             return poster;
-         }];
-    }
-    return poster;
+         }];*/
 }
 
 @end

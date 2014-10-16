@@ -31,9 +31,31 @@
     [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServer];
 }
 
-- (UIImage *)fetchPosterWithName:(NSString *)posterName
+- (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName
 {
-    return [[TMDBMoviesServerStore sharedManager] fetchMoviePosterWithFileName:posterName];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/images"];
+    NSString *localFilePath = [NSString stringWithFormat:@"%@%@",dataPath,posterName];
+    UIImage *poster=[UIImage imageNamed:localFilePath];
+    return poster;
+}
+
+- (void)saveAtDiskMoviePoster:(NSData *) posterImageData WithName:(NSString *)posterName;
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/images"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:nil]; //Create folder
+    }
+    NSString *localFilePath = [NSString stringWithFormat:@"%@%@",dataPath,posterName];
+    [posterImageData writeToFile:localFilePath atomically:YES];
+
 }
 
 #pragma mark - Application's Documents directory

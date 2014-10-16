@@ -59,7 +59,7 @@
 
 - (void)getMoviePosterFrom:(NSString *)postersRootPath
         withPosterFileName:(NSString *)posterFileName
-        usingResponseBlock:(TMDBClientPosterResponseBlock)block
+        usingResponseBlock:(TMDBClientResponseBlock)block
 {
     NSString *strURL=[NSString stringWithFormat:@"%@%@",postersRootPath,posterFileName];
     NSURL *url=[NSURL URLWithString:strURL];

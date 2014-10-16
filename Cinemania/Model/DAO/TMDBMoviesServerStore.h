@@ -5,10 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import "MoviesDataController.h"
+#import "TMDBClient.h"
 
 
 @interface TMDBMoviesServerStore : NSObject
 + (instancetype)sharedManager;
 - (void)fetchPopularMoviesFromServer;
-- (UIImage *)fetchMoviePosterWithFileName:(NSString *)posterFileName;
+- (void)fetchMoviePosterWithFileName:(NSString *)posterFileName usingResponseBlock:(TMDBClientResponseBlock)block;
 @end

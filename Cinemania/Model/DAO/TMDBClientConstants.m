@@ -105,4 +105,4 @@ NSString * const TMDBJobList = @"job/list";
 
 #pragma mark - Posters
 
-NSString * const TMDBPosters= @"http://image.tmdb.org/t/p/original";
+NSString * const TMDBPosters= @"http://image.tmdb.org/t/p/w185";
