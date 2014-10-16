@@ -17,6 +17,7 @@
 		C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876F00519C71292005F0225 /* MovieTableViewCell.m */; };
 		C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE319DC406000DA9697 /* TMDBClient.m */; };
 		C894CAE719DC409000DA9697 /* TMDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE619DC409000DA9697 /* TMDBClientConstants.m */; };
+		C896184119EFE27F005631CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C896184019EFE27F005631CF /* icon.png */; };
 		C8C8342E19C3210500563D95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342D19C3210500563D95 /* Foundation.framework */; };
 		C8C8343019C3210500563D95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8342F19C3210500563D95 /* CoreGraphics.framework */; };
 		C8C8343219C3210500563D95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8343119C3210500563D95 /* UIKit.framework */; };
@@ -58,7 +59,6 @@
 		C80FD30D19D46A5F00B04FBA /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		C80FD30F19D46A6000B04FBA /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		C80FD31019D46A6000B04FBA /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		C81A20DA19CC3AAE00BE951E /* rsz_metroui-apps-windows-moviemaker-icon-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rsz_metroui-apps-windows-moviemaker-icon-2x.png"; sourceTree = "<group>"; };
 		C82C1AFE19D55AFD00B38974 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
@@ -69,6 +69,7 @@
 		C894CAE319DC406000DA9697 /* TMDBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBClient.m; sourceTree = "<group>"; };
 		C894CAE519DC409000DA9697 /* TMDBClientConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClientConstants.h; sourceTree = "<group>"; };
 		C894CAE619DC409000DA9697 /* TMDBClientConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBClientConstants.m; sourceTree = "<group>"; };
+		C896184019EFE27F005631CF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		C8C8342A19C3210500563D95 /* Cinemania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinemania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8C8342D19C3210500563D95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8C8342F19C3210500563D95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,7 +165,7 @@
 		C8C8342119C3210400563D95 = {
 			isa = PBXGroup;
 			children = (
-				C81A20DA19CC3AAE00BE951E /* rsz_metroui-apps-windows-moviemaker-icon-2x.png */,
+				C896184019EFE27F005631CF /* icon.png */,
 				C8C8343519C3210500563D95 /* Cinemania */,
 				C8C8345B19C3210600563D95 /* CinemaniaTests */,
 				C8C8342C19C3210500563D95 /* Frameworks */,
@@ -319,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C896184119EFE27F005631CF /* icon.png in Resources */,
 				C8C8344E19C3210500563D95 /* Images.xcassets in Resources */,
 				C8C8343A19C3210500563D95 /* InfoPlist.strings in Resources */,
 				C8C8344319C3210500563D95 /* Main.storyboard in Resources */,

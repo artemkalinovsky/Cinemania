@@ -116,8 +116,8 @@
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
-    //cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterWithName:movie.posterPath];
-    cell.moviePosterImageView.image=self.loadedPoster;
+    cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterWithName:movie.posterPath];
+    //cell.moviePosterImageView.image=self.loadedPoster;
     return cell;
 }
 
