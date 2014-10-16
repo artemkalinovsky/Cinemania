@@ -27,7 +27,7 @@
     return  strDate;
 }
 
-- (NSString *)getFromattedRuntime:(NSNumber *)runtime
+- (NSString *)getFormattedRuntime:(NSNumber *)runtime
 {
     long runtimeIntValue=runtime.integerValue;
     long hours=runtimeIntValue/60;

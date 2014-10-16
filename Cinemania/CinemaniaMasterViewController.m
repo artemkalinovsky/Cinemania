@@ -105,14 +105,16 @@
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
-    cell.movieRuntimeLabel.text=[movie getFromattedRuntime:movie.runtime];
+    cell.movieRuntimeLabel.text=[movie getFormattedRuntime:movie.runtime];
+    
     if([[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath])
     {
         cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath];
     }
     else
     {
-        [[TMDBMoviesServerStore sharedManager] fetchMoviePosterWithFileName:movie.posterPath usingResponseBlock:^(NSURLResponse *response, NSData *imgData, NSError *error)
+        [[TMDBMoviesServerStore sharedManager] fetchMoviePosterWithFileName:movie.posterPath
+                                                         usingResponseBlock:^(NSURLResponse *response, NSData *imgData, NSError *error)
          {
              if (imgData)
              {
