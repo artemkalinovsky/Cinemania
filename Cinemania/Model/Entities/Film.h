@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSNumber *voteAverage;
 
 - (NSString *)getFormattedReleaseDate:(NSDate *)releaseDate;
+- (NSString *)getFromattedRuntime:(NSNumber *)runtime;
 
 @end

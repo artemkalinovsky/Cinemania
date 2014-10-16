@@ -27,4 +27,11 @@
     return  strDate;
 }
 
+- (NSString *)getFromattedRuntime:(NSNumber *)runtime
+{
+    long runtimeIntValue=runtime.integerValue;
+    long hours=runtimeIntValue/60;
+    long minutes=runtimeIntValue%60;
+    return [NSString stringWithFormat:@"%ld hr %ld min",hours,minutes];
+}
 @end

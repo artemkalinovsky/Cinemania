@@ -39,6 +39,19 @@
                                            {
                                                Movie *movie = [[Movie alloc] initWithServerResponse:dict
                                                                     andInsertInManagedObjectContext:[SqliteMoviesStore sharedManager].managedObjectContext];
+                                               
+                                               NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
+                                               [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovie
+                                                                                  withParameters:@{@"id":movieId}
+                                                                              usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
+                                                                              {
+                                                                                  if(data!=nil)
+                                                                                  {
+                                                                                      NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers
+                                                                                                                                           error:nil];
+                                                                                      [movie setValue:[json objectForKey:@"runtime"] forKey:@"runtime"];
+                                                                                  }
+                                                                              }];
                                            }
                                            [[SqliteMoviesStore sharedManager].managedObjectContext save:&error];
                                            [[MoviesDataController sharedManager].delegate moviesLoadingComplete];
@@ -73,5 +86,4 @@
              }
          }];*/
 }
-
 @end
