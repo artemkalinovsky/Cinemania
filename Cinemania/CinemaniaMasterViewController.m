@@ -16,12 +16,20 @@
 
 @interface CinemaniaMasterViewController ()
 @property (strong, nonatomic) NSArray *popularMovies;
+@property (strong,nonatomic)  NSMutableArray *filteredMoviesArray;
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIColor *tableViewSeparatorColor;
 @end
 
 @implementation CinemaniaMasterViewController
+
+- (NSMutableArray *)filteredMoviesArray
+{
+    if(!_filteredMoviesArray)
+        _filteredMoviesArray=[[NSMutableArray alloc] init];
+    return _filteredMoviesArray;
+}
 
 - (NSArray *)popularMovies
 {
@@ -95,13 +103,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.popularMovies.count;
+    //return self.popularMovies.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [self.filteredMoviesArray count];
+    }
+    else
+    {
+        return [self.popularMovies count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    Movie *movie=[self.popularMovies objectAtIndex:indexPath.row];
+    Movie *movie = nil;
+    static NSString *cellIdentifier = @"MovieCell";
+    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if ( cell == nil )
+    {
+        cell = [[MovieTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+   
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        movie = [self.filteredMoviesArray objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        movie = [self.popularMovies objectAtIndex:indexPath.row];
+    }
+    // Configure the cell
     cell.movieNameLabel.text=movie.originalTitle;
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
@@ -131,7 +162,8 @@
                  
              }
          }];
-    }    
+    }
+    //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 
@@ -176,4 +208,65 @@
     }
 }
 
+- (IBAction)segmentedCategoriesControlValueChanged:(id)sender
+{
+    NSArray *sortedArray=nil;
+    if([self.segmentedCategoriesControl selectedSegmentIndex] == 0)
+    {
+        sortedArray = [self.popularMovies sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                       {
+                           NSDate *first = [(Movie*)a releaseDate];
+                           NSDate *second = [(Movie*)b releaseDate];
+                           return [second compare:first];
+                       }];
+        self.popularMovies=sortedArray;
+    }
+    else if([self.segmentedCategoriesControl selectedSegmentIndex] == 1)
+    {
+        sortedArray = [self.popularMovies sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                       {
+                           NSNumber *first = [(Movie*)a voteAverage];
+                           NSNumber *second = [(Movie*)b voteAverage];
+                           return [second compare:first];
+                       }];
+        self.popularMovies=sortedArray;
+        
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark Content Filtering
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [self.filteredMoviesArray removeAllObjects];
+    // Filter the array using NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.originalTitle contains %@",searchText];
+    self.filteredMoviesArray = [NSMutableArray arrayWithArray:[self.popularMovies filteredArrayUsingPredicate:predicate]];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.rowHeight = 100;
+}
 @end

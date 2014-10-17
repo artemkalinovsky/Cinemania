@@ -7,7 +7,6 @@
 //
 
 #import "TMDBClient.h"
-#import "MoviesDataController.h"
 
 @implementation TMDBClient
 

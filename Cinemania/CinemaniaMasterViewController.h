@@ -11,5 +11,9 @@
 #import <CoreData/CoreData.h>
 #import "MoviesDataController.h"
 
-@interface CinemaniaMasterViewController : UITableViewController <MoviesDataControllerDelegate>
+@interface CinemaniaMasterViewController : UITableViewController <MoviesDataControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *moviesSearchBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedCategoriesControl;
+- (IBAction)segmentedCategoriesControlValueChanged:(id)sender;
 @end

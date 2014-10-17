@@ -4,7 +4,6 @@
 //
 
 #import "TMDBMoviesServerStore.h"
-#import "TMDBClient.h"
 #import "Movie.h"
 #import "SqliteMoviesStore.h"
 
