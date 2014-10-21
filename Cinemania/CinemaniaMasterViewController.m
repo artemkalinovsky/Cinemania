@@ -10,9 +10,10 @@
 
 #import "CinemaniaMasterViewController.h"
 #import "CinemaniaDetailViewController.h"
-#import "MovieTableViewCell.h"
 #import "Movie.h"
 #import "TMDBMoviesServerStore.h"
+
+#import "MovieCell.h"
 
 @interface CinemaniaMasterViewController ()
 @property (strong, nonatomic) NSArray *popularMovies;
@@ -94,6 +95,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"showMovieDetails" sender:nil];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -103,7 +114,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return self.popularMovies.count;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         return [self.filteredMoviesArray count];
@@ -118,10 +128,11 @@
 {
     Movie *movie = nil;
     static NSString *cellIdentifier = @"MovieCell";
-    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if ( cell == nil )
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if ( cell == nil)
     {
-        cell = [[MovieTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MovieCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
    
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -137,7 +148,7 @@
     cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
     cell.movieRuntimeLabel.text=[movie getFormattedRuntime:movie.runtime];
-    
+    cell.moviePosterImageView.image=nil;
     if([[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath])
     {
         cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath];
@@ -154,7 +165,7 @@
                  if (image)
                  {
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         MovieTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                         MovieCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
                          if (updateCell)
                              updateCell.moviePosterImageView.image = image;
                      });
@@ -163,7 +174,6 @@
              }
          }];
     }
-    //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 
@@ -179,13 +189,27 @@
     return NO;
 }
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"])
+    if ([segue.identifier isEqualToString:@"showMovieDetails"])
     {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Movie *movie = [self.popularMovies objectAtIndex:indexPath.row];
-        [[segue destinationViewController] setDetailItem:movie];
+        NSIndexPath *indexPath = nil;
+        Movie *movie = nil;
+        
+        if (self.searchDisplayController.active)
+        {
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            movie = [self.filteredMoviesArray objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            indexPath = [self.tableView indexPathForSelectedRow];
+            movie = [self.popularMovies objectAtIndex:indexPath.row];
+        }
+        
+        CinemaniaDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.detailItem = movie;
     }
 }
 
@@ -242,7 +266,7 @@
     // Remove all objects from the filtered search array
     [self.filteredMoviesArray removeAllObjects];
     // Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.originalTitle contains %@",searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.originalTitle contains[c] %@",searchText];
     self.filteredMoviesArray = [NSMutableArray arrayWithArray:[self.popularMovies filteredArrayUsingPredicate:predicate]];
 }
 
@@ -263,10 +287,5 @@
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
     // Return YES to cause the search result table view to be reloaded.
     return YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
-{
-    tableView.rowHeight = 100;
 }
 @end

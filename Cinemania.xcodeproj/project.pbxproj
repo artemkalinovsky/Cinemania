@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2D293ABD046D3B6D93AA288 /* SqliteMoviesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */; };
+		B2D293ABD046D3B6D93AA288 /* LocalMoviesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29B5E4CCA4D39CE2CEDDB /* LocalMoviesStore.m */; };
 		B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */; };
 		B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D291316C2978983B5484DE /* MoviesDataController.m */; };
 		C80FD30E19D46A5F00B04FBA /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD30D19D46A5F00B04FBA /* Film.m */; };
 		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
 		C82C1B0019D55AFD00B38974 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = C82C1AFF19D55AFD00B38974 /* Actor.m */; };
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
-		C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C876F00519C71292005F0225 /* MovieTableViewCell.m */; };
 		C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE319DC406000DA9697 /* TMDBClient.m */; };
 		C894CAE719DC409000DA9697 /* TMDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE619DC409000DA9697 /* TMDBClientConstants.m */; };
 		C896184119EFE27F005631CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C896184019EFE27F005631CF /* icon.png */; };
@@ -36,6 +35,8 @@
 		C8C8345819C3210600563D95 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C8343319C3210500563D95 /* CoreData.framework */; };
 		C8C8346019C3210600563D95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C8345E19C3210600563D95 /* InfoPlist.strings */; };
 		C8C8346219C3210600563D95 /* CinemaniaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8346119C3210600563D95 /* CinemaniaTests.m */; };
+		C8E9D07719F6A23100DEA044 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8E9D07619F6A23100DEA044 /* MovieCell.xib */; };
+		C8E9D07A19F6A39300DEA044 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9D07919F6A39300DEA044 /* MovieCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,8 @@
 		B2D2908118A1A330898AA87E /* TMDBMoviesServerStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMoviesServerStore.h; sourceTree = "<group>"; };
 		B2D290B78E9A674FDA05B06A /* MoviesDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesDataController.h; sourceTree = "<group>"; };
 		B2D291316C2978983B5484DE /* MoviesDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesDataController.m; sourceTree = "<group>"; };
-		B2D297E8FD90F8D6AA85275A /* SqliteMoviesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMoviesStore.h; sourceTree = "<group>"; };
-		B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteMoviesStore.m; sourceTree = "<group>"; };
+		B2D297E8FD90F8D6AA85275A /* LocalMoviesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMoviesStore.h; sourceTree = "<group>"; };
+		B2D29B5E4CCA4D39CE2CEDDB /* LocalMoviesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMoviesStore.m; sourceTree = "<group>"; };
 		B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBMoviesServerStore.m; sourceTree = "<group>"; };
 		C80FD30C19D46A5F00B04FBA /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
 		C80FD30D19D46A5F00B04FBA /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
@@ -63,8 +64,6 @@
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
-		C876F00419C71292005F0225 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
-		C876F00519C71292005F0225 /* MovieTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		C894CAE219DC406000DA9697 /* TMDBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClient.h; sourceTree = "<group>"; };
 		C894CAE319DC406000DA9697 /* TMDBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBClient.m; sourceTree = "<group>"; };
 		C894CAE519DC409000DA9697 /* TMDBClientConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClientConstants.h; sourceTree = "<group>"; };
@@ -93,6 +92,9 @@
 		C8C8345D19C3210600563D95 /* CinemaniaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CinemaniaTests-Info.plist"; sourceTree = "<group>"; };
 		C8C8345F19C3210600563D95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C8346119C3210600563D95 /* CinemaniaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CinemaniaTests.m; sourceTree = "<group>"; };
+		C8E9D07619F6A23100DEA044 /* MovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		C8E9D07819F6A39300DEA044 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		C8E9D07919F6A39300DEA044 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +156,8 @@
 				C894CAE319DC406000DA9697 /* TMDBClient.m */,
 				C894CAE519DC409000DA9697 /* TMDBClientConstants.h */,
 				C894CAE619DC409000DA9697 /* TMDBClientConstants.m */,
-				B2D29B5E4CCA4D39CE2CEDDB /* SqliteMoviesStore.m */,
-				B2D297E8FD90F8D6AA85275A /* SqliteMoviesStore.h */,
+				B2D29B5E4CCA4D39CE2CEDDB /* LocalMoviesStore.m */,
+				B2D297E8FD90F8D6AA85275A /* LocalMoviesStore.h */,
 				B2D29B755264BD1EB78A60B5 /* TMDBMoviesServerStore.m */,
 				B2D2908118A1A330898AA87E /* TMDBMoviesServerStore.h */,
 			);
@@ -197,14 +199,9 @@
 		C8C8343519C3210500563D95 /* Cinemania */ = {
 			isa = PBXGroup;
 			children = (
+				C8E9D07519F6A04700DEA044 /* Controller */,
+				C8E9D07419F6A03C00DEA044 /* View */,
 				C876EFF519C6FCE8005F0225 /* Model */,
-				C8C8344119C3210500563D95 /* Main.storyboard */,
-				C8C8344719C3210500563D95 /* CinemaniaMasterViewController.h */,
-				C8C8344819C3210500563D95 /* CinemaniaMasterViewController.m */,
-				C8C8344A19C3210500563D95 /* CinemaniaDetailViewController.h */,
-				C8C8344B19C3210500563D95 /* CinemaniaDetailViewController.m */,
-				C876F00419C71292005F0225 /* MovieTableViewCell.h */,
-				C876F00519C71292005F0225 /* MovieTableViewCell.m */,
 				C8C8344D19C3210500563D95 /* Images.xcassets */,
 				C8C8344419C3210500563D95 /* Cinemania.xcdatamodeld */,
 				C8C8343619C3210500563D95 /* Supporting Files */,
@@ -241,6 +238,28 @@
 				C8C8345E19C3210600563D95 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C8E9D07419F6A03C00DEA044 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C8344119C3210500563D95 /* Main.storyboard */,
+				C8E9D07619F6A23100DEA044 /* MovieCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C8E9D07519F6A04700DEA044 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C8C8344719C3210500563D95 /* CinemaniaMasterViewController.h */,
+				C8C8344819C3210500563D95 /* CinemaniaMasterViewController.m */,
+				C8C8344A19C3210500563D95 /* CinemaniaDetailViewController.h */,
+				C8C8344B19C3210500563D95 /* CinemaniaDetailViewController.m */,
+				C8E9D07819F6A39300DEA044 /* MovieCell.h */,
+				C8E9D07919F6A39300DEA044 /* MovieCell.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +343,7 @@
 				C8C8344E19C3210500563D95 /* Images.xcassets in Resources */,
 				C8C8343A19C3210500563D95 /* InfoPlist.strings in Resources */,
 				C8C8344319C3210500563D95 /* Main.storyboard in Resources */,
+				C8E9D07719F6A23100DEA044 /* MovieCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,14 +368,14 @@
 				C8C8344619C3210500563D95 /* Cinemania.xcdatamodeld in Sources */,
 				C8C8344919C3210500563D95 /* CinemaniaMasterViewController.m in Sources */,
 				C8C8343C19C3210500563D95 /* main.m in Sources */,
+				C8E9D07A19F6A39300DEA044 /* MovieCell.m in Sources */,
 				C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */,
 				C80FD31119D46A6000B04FBA /* Movie.m in Sources */,
 				C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */,
 				C894CAE719DC409000DA9697 /* TMDBClientConstants.m in Sources */,
 				C82C1B0019D55AFD00B38974 /* Actor.m in Sources */,
-				C876F00619C71292005F0225 /* MovieTableViewCell.m in Sources */,
 				B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */,
-				B2D293ABD046D3B6D93AA288 /* SqliteMoviesStore.m in Sources */,
+				B2D293ABD046D3B6D93AA288 /* LocalMoviesStore.m in Sources */,
 				B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

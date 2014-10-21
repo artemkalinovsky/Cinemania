@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "MoviesDataController.h"
 
-@interface SqliteMoviesStore : NSObject
+@interface LocalMoviesStore : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 + (instancetype)sharedManager;

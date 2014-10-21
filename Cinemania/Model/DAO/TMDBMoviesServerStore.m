@@ -5,7 +5,7 @@
 
 #import "TMDBMoviesServerStore.h"
 #import "Movie.h"
-#import "SqliteMoviesStore.h"
+#import "LocalMoviesStore.h"
 
 
 @implementation TMDBMoviesServerStore
@@ -38,7 +38,7 @@
              for (NSDictionary* dict in dictsArray)
              {
                  Movie *movie = [[Movie alloc] initWithServerResponse:dict
-                                      andInsertInManagedObjectContext:[SqliteMoviesStore sharedManager].managedObjectContext];
+                                      andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
                  
                  NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
                  [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovie
@@ -62,7 +62,7 @@
                       }
                   }];
              }
-             [[SqliteMoviesStore sharedManager].managedObjectContext save:&error];
+             [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
              [[MoviesDataController sharedManager].delegate moviesLoadingComplete];
          }
      }];

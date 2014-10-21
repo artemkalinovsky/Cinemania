@@ -3,25 +3,25 @@
 // Copyright (c) 2014 com.softserve. All rights reserved.
 //
 
-#import "SqliteMoviesStore.h"
+#import "LocalMoviesStore.h"
 
-@interface SqliteMoviesStore()
+@interface LocalMoviesStore()
 @property (readwrite, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readwrite, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readwrite, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @end
 
-@implementation SqliteMoviesStore
+@implementation LocalMoviesStore
 
 + (instancetype)sharedManager
 {
-    static SqliteMoviesStore *sqliteMoviesStore = nil;
+    static LocalMoviesStore *localMoviesStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sqliteMoviesStore = [[self alloc] init];
+        localMoviesStore = [[self alloc] init];
     });
 
-    return sqliteMoviesStore;
+    return localMoviesStore;
 }
 
 - (void)clearCache
@@ -146,7 +146,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
             initWithKey:@"releaseDate"
               ascending:NO
-               selector:@selector(localizedCaseInsensitiveCompare:)];
+               selector:@selector(compare:)];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
 
     // Now create the fetched results controller

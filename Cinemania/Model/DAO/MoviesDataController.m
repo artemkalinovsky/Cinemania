@@ -4,7 +4,7 @@
 //
 
 #import "MoviesDataController.h"
-#import "SqliteMoviesStore.h"
+#import "LocalMoviesStore.h"
 #import "TMDBMoviesServerStore.h"
 
 @implementation MoviesDataController
@@ -23,7 +23,7 @@
 #pragma mark - MoviesDataController Methods
 - (NSArray *)fetchMoviesFromLocalStore
 {
-    return [[[SqliteMoviesStore sharedManager] fetchMovies] fetchedObjects];
+    return [[[LocalMoviesStore sharedManager] fetchMovies] fetchedObjects];
 }
 
 - (void)fetchPopularMoviesFromRemoteStore
@@ -31,7 +31,7 @@
     static BOOL isFirstAppRun=YES;
     if (isFirstAppRun)
     {
-        [[SqliteMoviesStore sharedManager] clearCache];
+        [[LocalMoviesStore sharedManager] clearCache];
         isFirstAppRun=NO;
     }
     [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServer];

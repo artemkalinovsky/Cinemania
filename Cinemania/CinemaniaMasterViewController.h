@@ -10,7 +10,6 @@
 
 #import <CoreData/CoreData.h>
 #import "MoviesDataController.h"
-
 @interface CinemaniaMasterViewController : UITableViewController <MoviesDataControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *moviesSearchBar;

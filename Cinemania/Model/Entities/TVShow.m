@@ -9,5 +9,6 @@
 #import "TVShow.h"
 
 @implementation TVShow
-
+@dynamic showStatus;
+@dynamic showType;
 @end
