@@ -43,7 +43,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/images"];
     NSString *localFilePath = [NSString stringWithFormat:@"%@%@",dataPath,posterName];
-    UIImage *poster=[UIImage imageNamed:localFilePath];
+    UIImage *poster = [UIImage imageWithContentsOfFile:localFilePath];
     return poster;
 }
 
