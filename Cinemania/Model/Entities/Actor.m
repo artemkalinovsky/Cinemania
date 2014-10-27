@@ -18,4 +18,12 @@
 @dynamic name;
 @dynamic movies;
 
+
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    self = [NSEntityDescription insertNewObjectForEntityForName:@"Actor" inManagedObjectContext:managedObjectContext];
+    [self setValue:responseObject[@"name"] forKey:@"name"];
+    return self;
+}
+
 @end

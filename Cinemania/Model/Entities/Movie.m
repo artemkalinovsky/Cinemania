@@ -46,7 +46,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *releaseDate = [dateFormatter dateFromString:responseObject[@"release_date"]];
     [self setValue:releaseDate forKey:@"releaseDate"];
-    
+    self.actors=[[NSSet alloc] init];
     return self;
 }
 

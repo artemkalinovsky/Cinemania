@@ -7,9 +7,9 @@
 
 @protocol MoviesDataControllerDelegate;
 
+
 @interface MoviesDataController : NSObject
 @property (weak, nonatomic) id <MoviesDataControllerDelegate> delegate;
-+ (instancetype)sharedManager;
 - (NSArray *)fetchMoviesFromLocalStore;
 - (void)fetchPopularMoviesFromRemoteStore;
 - (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName;

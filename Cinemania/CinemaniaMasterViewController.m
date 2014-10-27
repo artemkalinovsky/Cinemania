@@ -5,8 +5,6 @@
 //  Created by Artem Kalinovsky on 9/12/14.
 //  Copyright (c) 2014 com.softserve. All rights reserved.
 //
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
 
 #import "CinemaniaMasterViewController.h"
 #import "CinemaniaDetailViewController.h"
@@ -16,6 +14,7 @@
 #import "MovieCell.h"
 
 @interface CinemaniaMasterViewController ()
+@property (strong, nonatomic) MoviesDataController *moviesDataController;
 @property (strong, nonatomic) NSArray *popularMovies;
 @property (strong,nonatomic)  NSMutableArray *filteredMoviesArray;
 @property (strong, nonatomic) UIView *overlayView;
@@ -42,7 +41,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [MoviesDataController sharedManager].delegate=self;
+    self.moviesDataController=[[MoviesDataController alloc] init];
+    self.moviesDataController.delegate=self;
+    //[MoviesDataController sharedManager].delegate=self;
 }
 
 - (void)viewDidLoad
@@ -72,14 +73,9 @@
 
 - (void)setDefaults
 {
-    [[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];
-}
-
-- (void)moviesLoadingComplete
-{
-    self.popularMovies=[[MoviesDataController sharedManager] fetchMoviesFromLocalStore];
-    [self hideActivityIndicator];
-    [self.tableView reloadData];
+    //[[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];
+    [self.moviesDataController fetchPopularMoviesFromRemoteStore];
+    //self.popularMovies=[self.moviesDataController fetchMovies];
 }
 
 - (void)hideActivityIndicator
@@ -95,16 +91,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showMovieDetails"])
+    {
+        NSIndexPath *indexPath = nil;
+        Movie *movie = nil;
+
+        if (self.searchDisplayController.active)
+        {
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            movie = [self.filteredMoviesArray objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            indexPath = [self.tableView indexPathForSelectedRow];
+            movie = [self.popularMovies objectAtIndex:indexPath.row];
+        }
+
+        CinemaniaDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.detailItem = movie;
+    }
+}
+
+#pragma mark - MoviesDataControllerDelegate
+- (void)moviesLoadingComplete
+{
+   // self.popularMovies=[[MoviesDataController sharedManager] fetchMoviesFromLocalStore];
+    self.popularMovies=[self.moviesDataController fetchMoviesFromLocalStore];
+    [self hideActivityIndicator];
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"showMovieDetails" sender:nil];
 }
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -149,9 +179,9 @@
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
     cell.movieRuntimeLabel.text=[movie getFormattedRuntime:movie.runtime];
     cell.moviePosterImageView.image=nil;
-    if([[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath])
+    if([self.moviesDataController fetchPosterFromDiskWithName:movie.posterPath])
     {
-        cell.moviePosterImageView.image=[[MoviesDataController sharedManager] fetchPosterFromDiskWithName:movie.posterPath];
+        cell.moviePosterImageView.image=[self.moviesDataController fetchPosterFromDiskWithName:movie.posterPath];
     }
     else
     {
@@ -160,7 +190,7 @@
          {
              if (imgData)
              {
-                 [[MoviesDataController sharedManager] saveAtDiskMoviePoster:imgData withName:movie.posterPath];
+                 [self.moviesDataController saveAtDiskMoviePoster:imgData withName:movie.posterPath];
                  UIImage *image = [UIImage imageWithData:imgData];
                  if (image)
                  {
@@ -189,30 +219,6 @@
     return NO;
 }
 
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showMovieDetails"])
-    {
-        NSIndexPath *indexPath = nil;
-        Movie *movie = nil;
-        
-        if (self.searchDisplayController.active)
-        {
-            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            movie = [self.filteredMoviesArray objectAtIndex:indexPath.row];
-        }
-        else
-        {
-            indexPath = [self.tableView indexPathForSelectedRow];
-            movie = [self.popularMovies objectAtIndex:indexPath.row];
-        }
-        
-        CinemaniaDetailViewController *destViewController = segue.destinationViewController;
-        destViewController.detailItem = movie;
-    }
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)aScrollView
@@ -228,7 +234,7 @@
     float reload_distance = 50;
     if(y > h + reload_distance)
     {
-        [[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];//load more movies from server
+        [self.moviesDataController fetchPopularMoviesFromRemoteStore];//load more movies from server
     }
 }
 

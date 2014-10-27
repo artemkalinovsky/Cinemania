@@ -5,6 +5,7 @@
 
 #import "TMDBMoviesServerStore.h"
 #import "Movie.h"
+#import "Actor.h"
 #import "LocalMoviesStore.h"
 
 
@@ -21,15 +22,22 @@
     return tmdbMoviesServerStore;
 }
 
-- (void)fetchPopularMoviesFromServer
+- (void)fetchPopularMoviesFromServerForDataController:(MoviesDataController *)moviesDataController
 {
     static int pageNumber=1;
+    static BOOL isFirstAppRun=YES;
     [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMoviePopular
                                        withParameters:@{@"page":@(pageNumber)}
                                    usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
      {
          if(data!=nil)
          {
+             if (isFirstAppRun)
+             {
+                 [[LocalMoviesStore sharedManager] clearCache];
+                 isFirstAppRun=NO;
+             }
+             
              id json=[NSJSONSerialization JSONObjectWithData:data
                                                      options:NSJSONReadingMutableContainers
                                                        error:nil];
@@ -39,8 +47,9 @@
              {
                  Movie *movie = [[Movie alloc] initWithServerResponse:dict
                                       andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
-                 
                  NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
+                 
+                 //fetch runtime and overview
                  [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovie
                                                     withParameters:@{@"id":movieId}
                                                 usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
@@ -53,17 +62,41 @@
                           @try
                           {
                               [movie setValue:json[@"runtime"] forKey:@"runtime"];
+                              [movie setValue:json[@"overview"] forKey:@"overview"];
                           }
                           @catch (NSException *exception)
                           {
                               [movie setValue:@(0) forKey:@"runtime"];
                           }
+                          
 
                       }
                   }];
+                 //fetch casts
+                 [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovieCredits
+                                                    withParameters:@{@"id":movieId}
+                                                usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
+                  {
+                      if(data!=nil)
+                      {
+                          NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data
+                                                                             options:NSJSONReadingMutableContainers
+                                                                               error:nil];
+                          NSArray *dictsArray = [json objectForKey:@"cast"];
+                          for (NSDictionary* dict in dictsArray)
+                          {
+                              Actor *actor=[[Actor alloc] initWithServerResponse:dict
+                                                 andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
+                              [movie addActorsObject:actor];
+                          }
+                          
+                          
+                      }
+                  }];
+
              }
              [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
-             [[MoviesDataController sharedManager].delegate moviesLoadingComplete];
+             [moviesDataController.delegate moviesLoadingComplete];
          }
      }];
     pageNumber++;

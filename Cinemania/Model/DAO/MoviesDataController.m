@@ -9,17 +9,6 @@
 
 @implementation MoviesDataController
 
-+ (instancetype)sharedManager
-{
-    static MoviesDataController *moviesDataController = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        moviesDataController = [[self alloc] init];
-    });
-    
-    return moviesDataController;
-}
-
 #pragma mark - MoviesDataController Methods
 - (NSArray *)fetchMoviesFromLocalStore
 {
@@ -28,13 +17,7 @@
 
 - (void)fetchPopularMoviesFromRemoteStore
 {
-    static BOOL isFirstAppRun=YES;
-    if (isFirstAppRun)
-    {
-        [[LocalMoviesStore sharedManager] clearCache];
-        isFirstAppRun=NO;
-    }
-    [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServer];
+    [[TMDBMoviesServerStore sharedManager] fetchPopularMoviesFromServerForDataController:self];
 }
 
 - (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName

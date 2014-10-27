@@ -8,9 +8,10 @@
 #import "TMDBClient.h"
 
 
-@interface TMDBMoviesServerStore : NSObject
+@interface TMDBMoviesServerStore : NSObject 
 + (instancetype)sharedManager;
-- (void)fetchPopularMoviesFromServer;
+- (void)fetchPopularMoviesFromServerForDataController:(MoviesDataController*) moviesDataController;
 - (void)fetchMoviePosterWithFileName:(NSString *)posterFileName
                   usingResponseBlock:(TMDBClientResponseBlock)block;
+
 @end

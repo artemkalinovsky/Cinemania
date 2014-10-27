@@ -8,9 +8,11 @@
 
 #import "CinemaniaDetailViewController.h"
 #import "Movie.h"
+#import "MoviesDataController.h"
+#import "Actor.h"
 
 @interface CinemaniaDetailViewController ()
-- (void)configureView;
+@property (strong, nonatomic) MoviesDataController *moviesDataController;
 @end
 
 @implementation CinemaniaDetailViewController
@@ -29,10 +31,21 @@
 
 - (void)configureView
 {
+    self.tableView.separatorColor = [UIColor clearColor];
     // Update the user interface for the detail item.
     if (self.detailItem)
     {
         self.title=self.detailItem.originalTitle;
+        self.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[self.detailItem getFormattedReleaseDate:self.detailItem.releaseDate]];
+        self.moviePosterImage.image=[self.moviesDataController fetchPosterFromDiskWithName:self.detailItem.posterPath];
+        self.movieOverviewTextField.text=self.detailItem.overview;
+        
+        NSMutableString *casts=[[NSMutableString alloc]init];
+        for (Actor *actor in self.detailItem.actors)
+        {
+            [casts appendString:[NSString stringWithFormat:@"%@, ",actor.name]];
+        }
+        self.movieCastTextField.text=[NSString stringWithFormat:@"%@", casts];
     }
 }
 
@@ -40,6 +53,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.moviesDataController=[[MoviesDataController alloc] init];
     [self configureView];
 }
 
