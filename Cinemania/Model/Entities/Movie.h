@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSSet *actors;
 
 - (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
+- (NSString *)getNamesOfAllActors;
 @end
 
 @interface Movie (CoreDataGeneratedAccessors)

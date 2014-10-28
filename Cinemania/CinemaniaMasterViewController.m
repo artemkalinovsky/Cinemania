@@ -20,9 +20,12 @@
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIColor *tableViewSeparatorColor;
+@property (strong, nonatomic) UIView *footerView;
 @end
 
 @implementation CinemaniaMasterViewController
+
+#pragma mark - CinemaniaMasterViewController Methods
 
 - (NSMutableArray *)filteredMoviesArray
 {
@@ -43,14 +46,8 @@
     [super awakeFromNib];
     self.moviesDataController=[[MoviesDataController alloc] init];
     self.moviesDataController.delegate=self;
-    //[MoviesDataController sharedManager].delegate=self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initialize];
-}
 
 - (void)initialize
 {
@@ -73,9 +70,7 @@
 
 - (void)setDefaults
 {
-    //[[MoviesDataController sharedManager] fetchPopularMoviesFromRemoteStore];
     [self.moviesDataController fetchPopularMoviesFromRemoteStore];
-    //self.popularMovies=[self.moviesDataController fetchMovies];
 }
 
 - (void)hideActivityIndicator
@@ -91,13 +86,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)initFooterView
+{
+    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
+    UIActivityIndicatorView * actInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    actInd.tag = 10;
+    actInd.frame = CGRectMake(150.0, 5.0, 20.0, 20.0);
+    actInd.hidesWhenStopped = YES;
+    [self.footerView addSubview:actInd];
+    actInd = nil;
+}
+
+#pragma mark - UIViewController
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initialize];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showMovieDetails"])
     {
         NSIndexPath *indexPath = nil;
         Movie *movie = nil;
-
+        
         if (self.searchDisplayController.active)
         {
             indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
@@ -108,7 +122,7 @@
             indexPath = [self.tableView indexPathForSelectedRow];
             movie = [self.popularMovies objectAtIndex:indexPath.row];
         }
-
+        
         CinemaniaDetailViewController *destViewController = segue.destinationViewController;
         destViewController.detailItem = movie;
     }
@@ -117,9 +131,10 @@
 #pragma mark - MoviesDataControllerDelegate
 - (void)moviesLoadingComplete
 {
-   // self.popularMovies=[[MoviesDataController sharedManager] fetchMoviesFromLocalStore];
+    self.footerView=nil;
     self.popularMovies=[self.moviesDataController fetchMoviesFromLocalStore];
     [self hideActivityIndicator];
+    [self initFooterView];
     [self.tableView reloadData];
 }
 
@@ -175,10 +190,10 @@
     }
     // Configure the cell
     cell.movieNameLabel.text=movie.originalTitle;
-    cell.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[movie getFormattedReleaseDate:movie.releaseDate]];
+    cell.movieReleaseDateLabel.text=[movie getFormattedReleaseDate:movie.releaseDate];
     cell.movieFanRatingLabel.text=[NSString stringWithFormat:@"Fan Rating: ⭐︎%.1f", movie.voteAverage.floatValue];
     cell.movieRuntimeLabel.text=[movie getFormattedRuntime:movie.runtime];
-    cell.moviePosterImageView.image=nil;
+    cell.moviePosterImageView.image=[UIImage imageNamed:@"movie_placeholder"];
     if([self.moviesDataController fetchPosterFromDiskWithName:movie.posterPath])
     {
         cell.moviePosterImageView.image=[self.moviesDataController fetchPosterFromDiskWithName:movie.posterPath];
@@ -220,6 +235,18 @@
 }
 
 #pragma mark - UIScrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    self.tableView.tableFooterView=nil;
+    BOOL endOfTable = (scrollView.contentOffset.y >= ((self.popularMovies.count * 100) - scrollView.frame.size.height)); // Here 100 is row height
+
+    if (endOfTable  && !scrollView.dragging && !scrollView.decelerating)
+    {
+        self.tableView.tableFooterView = self.footerView;
+        [(UIActivityIndicatorView *)[self.footerView viewWithTag:10] startAnimating];
+    }
+}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)aScrollView
                   willDecelerate:(BOOL)decelerate

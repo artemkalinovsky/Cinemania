@@ -87,7 +87,10 @@
                           {
                               Actor *actor=[[Actor alloc] initWithServerResponse:dict
                                                  andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
-                              [movie addActorsObject:actor];
+                              if(actor!=nil)
+                              {
+                                  [movie addActorsObject:actor];
+                              }
                           }
                           
                           

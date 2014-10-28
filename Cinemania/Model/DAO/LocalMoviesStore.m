@@ -148,7 +148,6 @@
               ascending:NO
                selector:@selector(compare:)];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-
     // Now create the fetched results controller
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
             initWithFetchRequest:fetchRequest

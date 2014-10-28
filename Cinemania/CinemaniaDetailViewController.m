@@ -21,9 +21,9 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
+    if (_detailItem != newDetailItem)
+    {
         _detailItem = newDetailItem;
-        
         // Update the view.
         [self configureView];
     }
@@ -36,16 +36,14 @@
     if (self.detailItem)
     {
         self.title=self.detailItem.originalTitle;
-        self.movieReleaseDateLabel.text=[NSString stringWithFormat:@"%@",[self.detailItem getFormattedReleaseDate:self.detailItem.releaseDate]];
+        self.movieReleaseDateLabel.text=[self.detailItem getFormattedReleaseDate:self.detailItem.releaseDate];
         self.moviePosterImage.image=[self.moviesDataController fetchPosterFromDiskWithName:self.detailItem.posterPath];
-        self.movieOverviewTextField.text=self.detailItem.overview;
-        
-        NSMutableString *casts=[[NSMutableString alloc]init];
-        for (Actor *actor in self.detailItem.actors)
+        if(self.moviePosterImage.image==nil)
         {
-            [casts appendString:[NSString stringWithFormat:@"%@, ",actor.name]];
+            self.moviePosterImage.image=[UIImage imageNamed:@"movie_placeholder"];
         }
-        self.movieCastTextField.text=[NSString stringWithFormat:@"%@", casts];
+        self.movieOverviewTextField.text=self.detailItem.overview;
+        self.movieCastTextField.text=[self.detailItem getNamesOfAllActors];
     }
 }
 

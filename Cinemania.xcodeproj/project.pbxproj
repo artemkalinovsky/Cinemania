@@ -14,6 +14,7 @@
 		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
 		C82C1B0019D55AFD00B38974 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = C82C1AFF19D55AFD00B38974 /* Actor.m */; };
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
+		C892607819FFCC7E0040DFB8 /* movie_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C892607719FFCC7E0040DFB8 /* movie_placeholder.png */; };
 		C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE319DC406000DA9697 /* TMDBClient.m */; };
 		C894CAE719DC409000DA9697 /* TMDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE619DC409000DA9697 /* TMDBClientConstants.m */; };
 		C896184119EFE27F005631CF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C896184019EFE27F005631CF /* icon.png */; };
@@ -64,6 +65,7 @@
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
+		C892607719FFCC7E0040DFB8 /* movie_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_placeholder.png; sourceTree = "<group>"; };
 		C894CAE219DC406000DA9697 /* TMDBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClient.h; sourceTree = "<group>"; };
 		C894CAE319DC406000DA9697 /* TMDBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBClient.m; sourceTree = "<group>"; };
 		C894CAE519DC409000DA9697 /* TMDBClientConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClientConstants.h; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				C896184019EFE27F005631CF /* icon.png */,
+				C892607719FFCC7E0040DFB8 /* movie_placeholder.png */,
 				C8C8343519C3210500563D95 /* Cinemania */,
 				C8C8345B19C3210600563D95 /* CinemaniaTests */,
 				C8C8342C19C3210500563D95 /* Frameworks */,
@@ -341,6 +344,7 @@
 			files = (
 				C896184119EFE27F005631CF /* icon.png in Resources */,
 				C8C8344E19C3210500563D95 /* Images.xcassets in Resources */,
+				C892607819FFCC7E0040DFB8 /* movie_placeholder.png in Resources */,
 				C8C8343A19C3210500563D95 /* InfoPlist.strings in Resources */,
 				C8C8344319C3210500563D95 /* Main.storyboard in Resources */,
 				C8E9D07719F6A23100DEA044 /* MovieCell.xib in Resources */,

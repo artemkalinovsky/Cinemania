@@ -36,7 +36,6 @@
     [self setValue:responseObject[@"vote_average"] forKey:@"voteAverage"];
     //add runtime,casts, overview
     [self setValue:@"" forKey:@"overview"];
-    // [self setValue:nil forKey:@"casts"];
     [self setValue:@(0) forKey:@"revenue"];
     [self setValue:@(0) forKey:@"budget"];
     [self setValue:@(0) forKey:@"runtime"];
@@ -50,4 +49,25 @@
     return self;
 }
 
+- (NSString *)getNamesOfAllActors
+{
+    NSMutableString *castsString=[[NSMutableString alloc]init];
+    NSArray *castsArray=[self.actors allObjects];
+    for(int i=0;i<[castsArray count]; i++)
+    {
+        if([castsArray[i] isKindOfClass:[Actor class]])
+        {
+            Actor *tmpActor=(Actor *)castsArray[i];
+            if(i==[castsArray count]-1)
+            {
+                [castsString appendString:[NSString stringWithFormat:@"%@",tmpActor.name]];
+            }
+            else
+            {
+                [castsString appendString:[NSString stringWithFormat:@"%@, ", tmpActor.name]];
+            }
+        }
+    }
+    return castsString;
+}
 @end
