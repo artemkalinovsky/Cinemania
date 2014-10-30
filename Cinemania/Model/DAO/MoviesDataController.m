@@ -10,9 +10,9 @@
 @implementation MoviesDataController
 
 #pragma mark - MoviesDataController Methods
-- (NSArray *)fetchMoviesFromLocalStore
+- (NSArray *)fetchMoviesFromLocalStoreAndSortBy:(NSString *)fieldName
 {
-    return [[[LocalMoviesStore sharedManager] fetchMovies] fetchedObjects];
+    return [[[LocalMoviesStore sharedManager] fetchMoviesAndSortBy:fieldName] fetchedObjects];
 }
 
 - (void)fetchPopularMoviesFromRemoteStore

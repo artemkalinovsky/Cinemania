@@ -10,7 +10,7 @@
 
 @interface MoviesDataController : NSObject
 @property (weak, nonatomic) id <MoviesDataControllerDelegate> delegate;
-- (NSArray *)fetchMoviesFromLocalStore;
+- (NSArray *)fetchMoviesFromLocalStoreAndSortBy:(NSString *)fieldName;
 - (void)fetchPopularMoviesFromRemoteStore;
 - (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName;
 - (void)saveAtDiskMoviePoster:(NSData *)posterImageData

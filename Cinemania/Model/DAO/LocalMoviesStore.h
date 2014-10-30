@@ -10,6 +10,6 @@
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 + (instancetype)sharedManager;
-- (NSFetchedResultsController *)fetchMovies;
+- (NSFetchedResultsController *)fetchMoviesAndSortBy:(NSString *)fieldName;
 - (void)clearCache;
 @end

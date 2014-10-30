@@ -134,7 +134,7 @@
     return _persistentStoreCoordinator;
 }
 
-- (NSFetchedResultsController *)fetchMovies
+- (NSFetchedResultsController *)fetchMoviesAndSortBy:(NSString *)fieldName
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie"
@@ -144,7 +144,7 @@
 
     // Create a sort descriptor for the request
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-            initWithKey:@"releaseDate"
+            initWithKey:fieldName
               ascending:NO
                selector:@selector(compare:)];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
@@ -152,7 +152,7 @@
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
             initWithFetchRequest:fetchRequest
             managedObjectContext:self.managedObjectContext
-              sectionNameKeyPath:@"releaseDate"
+              sectionNameKeyPath:fieldName
                        cacheName:@"Master"];
 
     NSError *error = nil;

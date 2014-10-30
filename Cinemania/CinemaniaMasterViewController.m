@@ -132,7 +132,9 @@
 - (void)moviesLoadingComplete
 {
     self.footerView=nil;
-    self.popularMovies=[self.moviesDataController fetchMoviesFromLocalStore];
+    //get
+    NSString *sortingFieldName=[self.segmentedCategoriesControl selectedSegmentIndex] == 0 ? @"releaseDate":@"voteAverage";
+    self.popularMovies=[self.moviesDataController fetchMoviesFromLocalStoreAndSortBy:sortingFieldName];
     [self hideActivityIndicator];
     [self initFooterView];
     [self.tableView reloadData];
