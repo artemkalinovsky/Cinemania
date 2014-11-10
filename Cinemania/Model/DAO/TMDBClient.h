@@ -20,5 +20,6 @@ typedef void (^TMDBClientResponseBlock)(NSURLResponse *response, NSData *data, N
 - (void)getMoviePosterFrom:(NSString *)postersRootPath
         withPosterFileName:(NSString *)posterFileName
         usingResponseBlock:(TMDBClientResponseBlock)block;
+- (NSData *)getJsonDataForTrailerByMovieId:(NSNumber *)movieId;
 
 @end

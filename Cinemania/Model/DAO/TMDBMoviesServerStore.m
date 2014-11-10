@@ -114,4 +114,25 @@
          block(response, data, error);
      }];
 }
+
+- (NSURL *) prepareTrailerLinkByMovieId:(NSNumber *)movieId
+{
+    NSData *jsonData = [[TMDBClient sharedManager] getJsonDataForTrailerByMovieId:movieId];
+    if (jsonData != nil)
+    {
+        NSError *error = nil;
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        if (error == nil)
+        {
+            //NSLog(@"%@", result);
+            NSDictionary *dict = result[@"youtube"];
+            NSString *trailerCode = [NSString stringWithFormat:@"%@", [[dict valueForKey:@"source"] firstObject]];
+            //NSLog(@"%@",trailerCode);
+            NSString *urlVideoString = [NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@", trailerCode];
+            NSURL *urlVideo = [NSURL URLWithString:urlVideoString];
+            return urlVideo;
+        }
+    }
+    return nil;
+}
 @end

@@ -76,5 +76,14 @@
          
      }];
 }
-
+- (NSData *)getJsonDataForTrailerByMovieId:(NSNumber *)movieId
+{
+    NSString *strURL=[NSString stringWithFormat:@"%@%@?api_key=%@",TMDBBaseURL,TMDBMovieTrailers,TMDBApiKey];
+    if ([strURL rangeOfString:@":id"].location != NSNotFound)
+    {
+        strURL = [strURL stringByReplacingOccurrencesOfString:@":id" withString:[NSString stringWithFormat:@"%@",movieId]];
+    }
+    NSURL *url = [NSURL URLWithString:strURL];
+    return [NSData dataWithContentsOfURL:url];
+}
 @end

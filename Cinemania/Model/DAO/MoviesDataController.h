@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol MoviesDataControllerDelegate;
+@class Movie;
 
 
 @interface MoviesDataController : NSObject
@@ -15,6 +16,7 @@
 - (UIImage*)fetchPosterFromDiskWithName:(NSString *)posterName;
 - (void)saveAtDiskMoviePoster:(NSData *)posterImageData
                      withName:(NSString *)posterName;
+- (NSURL *)getTrailerUrlForMovie:(Movie *)movie;
 @end
 
 @protocol MoviesDataControllerDelegate

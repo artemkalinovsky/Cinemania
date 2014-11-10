@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *movieReleaseDateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *movieCastTextField;
 @property (weak, nonatomic) IBOutlet UITextView *movieOverviewTextField;
+@property (weak, nonatomic) IBOutlet UIButton *watchTheTrailerButton;
+- (IBAction)watchTheTrailerButtonClicked:(id)sender;
 
 @end

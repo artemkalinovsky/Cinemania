@@ -6,6 +6,7 @@
 #import "MoviesDataController.h"
 #import "LocalMoviesStore.h"
 #import "TMDBMoviesServerStore.h"
+#import "Movie.h"
 
 @implementation MoviesDataController
 
@@ -50,4 +51,9 @@
 
 }
 
+- (NSURL *)getTrailerUrlForMovie:(Movie *)movie
+{
+    return [[TMDBMoviesServerStore sharedManager] prepareTrailerLinkByMovieId:movie.filmID];
+
+}
 @end

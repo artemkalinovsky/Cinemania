@@ -13,5 +13,5 @@
 - (void)fetchPopularMoviesFromServerForDataController:(MoviesDataController*) moviesDataController;
 - (void)fetchMoviePosterWithFileName:(NSString *)posterFileName
                   usingResponseBlock:(TMDBClientResponseBlock)block;
-
+- (NSURL *) prepareTrailerLinkByMovieId:(NSNumber *)movieId;
 @end
