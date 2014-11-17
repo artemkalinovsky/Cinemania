@@ -67,6 +67,7 @@
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
+		C879B11B1A1A5F3C004C5E80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C87A226D1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaniaSettingsTableViewController.h; sourceTree = "<group>"; };
 		C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaniaSettingsTableViewController.m; sourceTree = "<group>"; };
 		C87A22701A11012500A8419A /* CinemaniaLanguagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaniaLanguagesTableViewController.h; sourceTree = "<group>"; };
@@ -443,6 +444,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C8C8345F19C3210600563D95 /* en */,
+				C879B11B1A1A5F3C004C5E80 /* Base */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

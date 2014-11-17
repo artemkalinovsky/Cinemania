@@ -50,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     self.moviesDataController=[[MoviesDataController alloc] init];
     [self configureView];
 }
@@ -64,7 +64,7 @@
 - (IBAction)watchTheTrailerButtonClicked:(id)sender
 {
 
-   [[UIApplication sharedApplication] openURL:[self.moviesDataController getTrailerUrlForMovie:self.detailItem]];
+    [[UIApplication sharedApplication] openURL:[self.moviesDataController getTrailerUrlForMovie:self.detailItem]];
 //           MPMoviePlayerController *moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:urlVideo];
 //            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayer];
 //            moviePlayer.controlStyle=MPMovieControlStyleDefault;
@@ -72,8 +72,8 @@
 //           [self.view addSubview:moviePlayer.view];
 //           [moviePlayer setFullscreen:YES animated:YES];
 
-   //     }
-   // }
+    //     }
+    // }
 }
 //
 //- (void) moviePlayBackDidFinish:(NSNotification*)notification

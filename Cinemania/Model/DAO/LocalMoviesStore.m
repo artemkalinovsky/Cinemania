@@ -27,7 +27,7 @@
 - (void)clearCache
 {
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Cinemania.sqlite"];
-   [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
 
 //    NSManagedObjectContext *context =_managedObjectContext;
 //    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];

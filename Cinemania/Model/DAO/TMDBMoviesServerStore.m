@@ -18,7 +18,7 @@
     dispatch_once(&onceToken, ^{
         tmdbMoviesServerStore = [[self alloc] init];
     });
-    
+
     return tmdbMoviesServerStore;
 }
 
@@ -39,13 +39,13 @@
                                            {
 //                                               [movie setValue:json[@"runtime"] forKey:@"runtime"];
 //                                               [movie setValue:json[@"overview"] forKey:@"overview"];
-                                                 movie.runtime = json[@"runtime"];
-                                                 movie.overview = json[@"overview"];
+                                               movie.runtime = json[@"runtime"];
+                                               movie.overview = json[@"overview"];
                                            }
                                            @catch (NSException *exception)
                                            {
 //                                               [movie setValue:@(0) forKey:@"runtime"];
-                                                 movie.runtime = @(0);
+                                               movie.runtime = @(0);
                                            }
 
 
@@ -88,33 +88,33 @@
     [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMoviePopular
                                        withParameters:@{@"page":@(pageNumber)}
                                    usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if(data!=nil)
-         {
-             if (isFirstAppRun)
-             {
-                 [[LocalMoviesStore sharedManager] clearCache];
-                 isFirstAppRun=NO;
-             }
-             
-             id json=[NSJSONSerialization JSONObjectWithData:data
-                                                     options:NSJSONReadingMutableContainers
-                                                       error:nil];
-             // NSLog(@"Your JSON Object: %@", json);
-             NSArray *dictsArray = [json objectForKey:@"results"];
-             for (NSDictionary* dict in dictsArray)
-             {
-                 Movie *movie = [[Movie alloc] initWithServerResponse:dict];
-                 @synchronized (self)
-                 {
-                     [self fetchRuntimeAndOverviewForMovie:movie];
-                     [self fetchCastsForMovie:movie];
-                 }
-             }
-             [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
-             [moviesDataController.delegate moviesLoadingComplete];
-         }
-     }];
+                                   {
+                                       if(data!=nil)
+                                       {
+                                           if (isFirstAppRun)
+                                           {
+                                               [[LocalMoviesStore sharedManager] clearCache];
+                                               isFirstAppRun=NO;
+                                           }
+
+                                           id json=[NSJSONSerialization JSONObjectWithData:data
+                                                                                   options:NSJSONReadingMutableContainers
+                                                                                     error:nil];
+                                           // NSLog(@"Your JSON Object: %@", json);
+                                           NSArray *dictsArray = [json objectForKey:@"results"];
+                                           for (NSDictionary* dict in dictsArray)
+                                           {
+                                               Movie *movie = [[Movie alloc] initWithServerResponse:dict];
+                                               @synchronized (self)
+                                               {
+                                                   [self fetchRuntimeAndOverviewForMovie:movie];
+                                                   [self fetchCastsForMovie:movie];
+                                               }
+                                           }
+                                           [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
+                                           [moviesDataController.delegate moviesLoadingComplete];
+                                       }
+                                   }];
     pageNumber++;
 }
 
@@ -123,9 +123,9 @@
     [[TMDBClient sharedManager] getMoviePosterFrom:TMDBPosters
                                 withPosterFileName:posterFileName
                                 usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         block(response, data, error);
-     }];
+                                {
+                                    block(response, data, error);
+                                }];
 }
 
 - (NSURL *) prepareTrailerLinkByMovieId:(NSNumber *)movieId

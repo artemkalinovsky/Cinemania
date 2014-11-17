@@ -36,7 +36,7 @@
            // movie = [self.popularMovies objectAtIndex:indexPath.row];
         }
         
-        CinemaniaLanguagesTableViewController *destViewController = segue.destinationViewController;
+        //CinemaniaLanguagesTableViewController *destViewController = segue.destinationViewController;
        // destViewController.detailItem = movie;
     }
 }

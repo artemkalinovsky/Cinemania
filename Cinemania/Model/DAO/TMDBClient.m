@@ -30,30 +30,30 @@
     {
         strURL = [strURL stringByReplacingOccurrencesOfString:@":id" withString:parameters[@"id"]];
     }
-    
+
     NSArray *paramKeys=parameters.allKeys;
     NSArray *paramValues=parameters.allValues;
-    
+
     for(int i=0;i<parameters.count;i++)
     {
         NSString *tmpParam=[NSString stringWithFormat:@"&%@=%@",[paramKeys objectAtIndex:i], [paramValues objectAtIndex:i]];
         strURL= [strURL stringByAppendingString:tmpParam];
     }
-    
+
     NSURL *url=[NSURL URLWithString:strURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                          timeoutInterval:30.0];
-    
+
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
+
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         block(response,data,error);
-         
-     }];
+                           {
+                               block(response,data,error);
+
+                           }];
 }
 
 - (void)getMoviePosterFrom:(NSString *)postersRootPath
@@ -65,16 +65,16 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                          timeoutInterval:30.0];
-    
+
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
+
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         block(response,data,error);
-         
-     }];
+                           {
+                               block(response,data,error);
+
+                           }];
 }
 - (NSData *)getJsonDataForTrailerByMovieId:(NSNumber *)movieId
 {
