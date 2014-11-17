@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString *lastName;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *movies;
-- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject;
 @end
 
 @interface Actor (CoreDataGeneratedAccessors)

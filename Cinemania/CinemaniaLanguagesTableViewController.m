@@ -9,7 +9,7 @@
 #import "CinemaniaLanguagesTableViewController.h"
 
 @interface CinemaniaLanguagesTableViewController ()
-
+@property (strong, nonatomic) NSIndexPath* checkedIndexPath;
 @end
 
 @implementation CinemaniaLanguagesTableViewController
@@ -38,6 +38,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Uncheck the previous checked row
+    if(self.checkedIndexPath)
+    {
+        UITableViewCell* uncheckCell = [tableView
+                cellForRowAtIndexPath:self.checkedIndexPath];
+        uncheckCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    if([self.checkedIndexPath isEqual:indexPath])
+    {
+        self.checkedIndexPath = nil;
+    }
+    else
+    {
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.checkedIndexPath = indexPath;
+    }
 }
 
 #pragma mark - Table view data source

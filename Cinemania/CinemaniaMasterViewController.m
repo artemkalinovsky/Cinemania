@@ -60,7 +60,7 @@
     self.tableViewSeparatorColor=self.tableView.separatorColor;
     self.tableView.separatorColor = [UIColor clearColor];
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.color=[UIColor blackColor];
     self.activityIndicator.center = self.overlayView.center;
@@ -90,7 +90,7 @@
 
 -(void)initFooterView
 {
-    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
+    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
     UIActivityIndicatorView * actInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     actInd.tag = 10;
     actInd.frame = CGRectMake(150.0, 5.0, 20.0, 20.0);

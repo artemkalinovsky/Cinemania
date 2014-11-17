@@ -16,7 +16,6 @@
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
 		C87A226F1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */; };
 		C87A22721A11012500A8419A /* CinemaniaLanguagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */; };
-		C87A22741A11130500A8419A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C87A22731A11130500A8419A /* Settings.bundle */; };
 		C892607819FFCC7E0040DFB8 /* movie_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C892607719FFCC7E0040DFB8 /* movie_placeholder.png */; };
 		C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE319DC406000DA9697 /* TMDBClient.m */; };
 		C894CAE719DC409000DA9697 /* TMDBClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE619DC409000DA9697 /* TMDBClientConstants.m */; };
@@ -72,7 +71,6 @@
 		C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaniaSettingsTableViewController.m; sourceTree = "<group>"; };
 		C87A22701A11012500A8419A /* CinemaniaLanguagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaniaLanguagesTableViewController.h; sourceTree = "<group>"; };
 		C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaniaLanguagesTableViewController.m; sourceTree = "<group>"; };
-		C87A22731A11130500A8419A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Cinemania/Settings.bundle; sourceTree = "<group>"; };
 		C892607719FFCC7E0040DFB8 /* movie_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_placeholder.png; sourceTree = "<group>"; };
 		C894CAE219DC406000DA9697 /* TMDBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBClient.h; sourceTree = "<group>"; };
 		C894CAE319DC406000DA9697 /* TMDBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBClient.m; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 		C87A22751A1117D700A8419A /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
-				C87A22731A11130500A8419A /* Settings.bundle */,
 				C892607719FFCC7E0040DFB8 /* movie_placeholder.png */,
 				C896184019EFE27F005631CF /* icon.png */,
 			);
@@ -369,7 +366,6 @@
 				C8C8343A19C3210500563D95 /* InfoPlist.strings in Resources */,
 				C8C8344319C3210500563D95 /* Main.storyboard in Resources */,
 				C8E9D07719F6A23100DEA044 /* MovieCell.xib in Resources */,
-				C87A22741A11130500A8419A /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

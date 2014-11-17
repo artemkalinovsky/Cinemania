@@ -8,6 +8,7 @@
 
 #import "Actor.h"
 #import "Movie.h"
+#import "LocalMoviesStore.h"
 
 
 @implementation Actor
@@ -19,8 +20,9 @@
 @dynamic movies;
 
 
-- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject
 {
+    NSManagedObjectContext *managedObjectContext = [LocalMoviesStore sharedManager].managedObjectContext;
     self = [NSEntityDescription insertNewObjectForEntityForName:@"Actor" inManagedObjectContext:managedObjectContext];
     [self setValue:responseObject[@"name"] forKey:@"name"];
     return self;

@@ -8,6 +8,7 @@
 
 #import "Movie.h"
 #import "Actor.h"
+#import "LocalMoviesStore.h"
 
 
 @implementation Movie
@@ -18,8 +19,9 @@
 @dynamic runtime;
 @dynamic actors;
 
-- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject
 {
+    NSManagedObjectContext *managedObjectContext = [LocalMoviesStore sharedManager].managedObjectContext;
     self = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:managedObjectContext];
     [self setValue:responseObject[@"id"] forKey:@"filmID"];
     
@@ -32,7 +34,8 @@
        [self setValue:responseObject[@"poster_path"] forKey:@"posterPath"];
     }
     
-    [self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];
+    //[self setValue:responseObject[@"original_title"] forKey:@"originalTitle"];
+    [self setValue:responseObject[@"title"] forKey:@"originalTitle"];
     [self setValue:responseObject[@"vote_average"] forKey:@"voteAverage"];
     //add runtime,casts, overview
     [self setValue:@"" forKey:@"overview"];

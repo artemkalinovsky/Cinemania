@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSNumber *runtime;
 @property (nonatomic, retain) NSSet *actors;
 
-- (instancetype)initWithServerResponse:(NSDictionary*)responseObject andInsertInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithServerResponse:(NSDictionary*)responseObject;
 - (NSString *)getNamesOfAllActors;
 @end
 

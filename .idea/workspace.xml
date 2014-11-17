@@ -2,24 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7287044f-703f-4fe8-8a9c-dca034903e3c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaSettingsTableViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaSettingsTableViewController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/Settings.bundle/Root.plist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cinemania/Settings.bundle/en.lproj/Root.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.h" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Cinemania/Settings.bundle/Root.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Cinemania/Settings.bundle/en.lproj/Root.strings" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" afterPath="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Images.xcassets/AppIcon-2.appiconset/Contents.json" afterPath="$PROJECT_DIR$/Cinemania/Images.xcassets/AppIcon-2.appiconset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/Cinemania/Images.xcassets/AppIcon.appiconset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Images.xcassets/movie_placeholder.imageset/Contents.json" afterPath="$PROJECT_DIR$/Cinemania/Images.xcassets/movie_placeholder.imageset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Cinemania/Base.lproj/Main.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" afterPath="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" afterPath="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cinemania.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Cinemania.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -49,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="960">
-              <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+              <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
               <folding>
                 <element signature="e#108#140#0" expanded="true" />
               </folding>
@@ -61,49 +52,7 @@
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBClientConstants.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1695">
-              <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Root.plist" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Settings.bundle/Root.plist">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CinemaniaDetailViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="447" max-vertical-offset="1455">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <element signature="e#163#198#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBClient.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -112,28 +61,8 @@
       <file leaf-file-name="TMDBClient.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="552" max-vertical-offset="1425">
-              <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBMoviesServerStore.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TMDBMoviesServerStore.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.60137457" vertical-offset="1095" max-vertical-offset="2100">
-              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="1425">
+              <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -142,8 +71,70 @@
       <file leaf-file-name="CinemaniaMasterViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2745" max-vertical-offset="4920">
-              <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="4920">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Movie.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+              <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Movie.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
+              <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actor.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actor.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TMDBMoviesServerStore.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2340">
+              <caret line="79" column="3" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="3" />
+              <folding>
+                <element signature="e#109#142#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CinemaniaLanguagesTableViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.0446736" vertical-offset="1302" max-vertical-offset="2175">
+              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -174,21 +165,23 @@
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/SqliteMoviesStore.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Film.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Film.h" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/LocalMoviesStore.h" />
         <option value="$PROJECT_DIR$/Cinemania/Base.lproj/Main.storyboard" />
         <option value="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.h" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
-        <option value="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/LocalMoviesStore.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.h" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
-        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m" />
         <option value="$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h" />
         <option value="$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m" />
+        <option value="$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m" />
+        <option value="$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m" />
+        <option value="$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m" />
       </list>
     </option>
   </component>
@@ -223,6 +216,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,8 +232,28 @@
               <option name="myItemId" value="Resouces" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Settings.bundle" />
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cinemania" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cinemania" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cinemania" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -253,7 +267,11 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resouces" />
+              <option name="myItemId" value="Cinemania" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -266,18 +284,12 @@
               <option name="myItemId" value="Cinemania" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Cinemania" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Cinemania" />
+              <option name="myItemId" value="Supporting Files" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -325,9 +337,26 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cinemania" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cinemania" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -427,7 +456,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -627,20 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/MovieCell.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="873">
@@ -648,10 +663,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="447" max-vertical-offset="1455">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Base.lproj/Main.storyboard">
+      <provider selected="true" editor-type-id="appcode-designer">
+        <state ui-designer-zoom="1.2" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Film.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
           <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -659,42 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1185">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/LocalMoviesStore.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17017828" vertical-offset="0" max-vertical-offset="617">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -707,6 +707,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/LocalMoviesStore.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/LocalMoviesStore.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="2760">
@@ -715,46 +731,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m">
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4107" max-vertical-offset="4980">
-          <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1695">
+          <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="960">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-          <folding>
-            <element signature="e#108#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaDetailViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="447" max-vertical-offset="1455">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#163#198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="552" max-vertical-offset="1425">
-          <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -770,36 +758,83 @@
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Base.lproj/Main.storyboard">
-      <provider selected="true" editor-type-id="appcode-designer">
-        <state ui-designer-zoom="1.2" />
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/MoviesDataController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="960">
+          <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+          <folding>
+            <element signature="e#108#140#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClientConstants.m">
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBClient.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="1695">
-          <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="1425">
+          <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cinemania/Settings.bundle/Root.plist">
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Actor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/Model/Entities/Movie.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1140">
+          <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaMasterViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="4920">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cinemania/Model/DAO/TMDBMoviesServerStore.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.60137457" vertical-offset="1095" max-vertical-offset="2100">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2340">
+          <caret line="79" column="3" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="3" />
+          <folding>
+            <element signature="e#109#142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cinemania/CinemaniaLanguagesTableViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0446736" vertical-offset="1302" max-vertical-offset="2175">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
           <folding />
         </state>
       </provider>

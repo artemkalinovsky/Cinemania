@@ -22,6 +22,65 @@
     return tmdbMoviesServerStore;
 }
 
+- (void)fetchRuntimeAndOverviewForMovie:(Movie *)movie
+{
+    NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
+
+    [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovie
+                                       withParameters:@{@"id":movieId}
+                                   usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
+                                   {
+                                       if(data!=nil)
+                                       {
+                                           NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:NSJSONReadingMutableContainers
+                                                                                                error:nil];
+                                           @try
+                                           {
+//                                               [movie setValue:json[@"runtime"] forKey:@"runtime"];
+//                                               [movie setValue:json[@"overview"] forKey:@"overview"];
+                                                 movie.runtime = json[@"runtime"];
+                                                 movie.overview = json[@"overview"];
+                                           }
+                                           @catch (NSException *exception)
+                                           {
+//                                               [movie setValue:@(0) forKey:@"runtime"];
+                                                 movie.runtime = @(0);
+                                           }
+
+
+                                       }
+                                   }];
+}
+
+- (void)fetchCastsForMovie:(Movie *)movie
+{
+    NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
+
+    [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovieCredits
+                                       withParameters:@{@"id":movieId}
+                                   usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
+                                   {
+                                       if(data!=nil)
+                                       {
+                                           NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:NSJSONReadingMutableContainers
+                                                                                                error:nil];
+                                           NSArray *dictsArray = [json objectForKey:@"cast"];
+                                           for (NSDictionary* dict in dictsArray)
+                                           {
+                                               Actor *actor=[[Actor alloc] initWithServerResponse:dict];
+                                               if(actor!=nil)
+                                               {
+                                                   [movie addActorsObject:actor];
+                                               }
+                                           }
+
+
+                                       }
+                                   }];
+}
+
 - (void)fetchPopularMoviesFromServerForDataController:(MoviesDataController *)moviesDataController
 {
     static int pageNumber=1;
@@ -45,58 +104,12 @@
              NSArray *dictsArray = [json objectForKey:@"results"];
              for (NSDictionary* dict in dictsArray)
              {
-                 Movie *movie = [[Movie alloc] initWithServerResponse:dict
-                                      andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
-                 NSString *movieId=[NSString stringWithFormat:@"%ld",(long)movie.filmID.integerValue];
-                 
-                 //fetch runtime and overview
-                 [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovie
-                                                    withParameters:@{@"id":movieId}
-                                                usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
-                  {
-                      if(data!=nil)
-                      {
-                          NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data
-                                                                             options:NSJSONReadingMutableContainers
-                                                                               error:nil];
-                          @try
-                          {
-                              [movie setValue:json[@"runtime"] forKey:@"runtime"];
-                              [movie setValue:json[@"overview"] forKey:@"overview"];
-                          }
-                          @catch (NSException *exception)
-                          {
-                              [movie setValue:@(0) forKey:@"runtime"];
-                          }
-                          
-
-                      }
-                  }];
-                 //fetch casts
-                 [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMovieCredits
-                                                    withParameters:@{@"id":movieId}
-                                                usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
-                  {
-                      if(data!=nil)
-                      {
-                          NSDictionary *json=[NSJSONSerialization JSONObjectWithData:data
-                                                                             options:NSJSONReadingMutableContainers
-                                                                               error:nil];
-                          NSArray *dictsArray = [json objectForKey:@"cast"];
-                          for (NSDictionary* dict in dictsArray)
-                          {
-                              Actor *actor=[[Actor alloc] initWithServerResponse:dict
-                                                 andInsertInManagedObjectContext:[LocalMoviesStore sharedManager].managedObjectContext];
-                              if(actor!=nil)
-                              {
-                                  [movie addActorsObject:actor];
-                              }
-                          }
-                          
-                          
-                      }
-                  }];
-
+                 Movie *movie = [[Movie alloc] initWithServerResponse:dict];
+                 @synchronized (self)
+                 {
+                     [self fetchRuntimeAndOverviewForMovie:movie];
+                     [self fetchCastsForMovie:movie];
+                 }
              }
              [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
              [moviesDataController.delegate moviesLoadingComplete];
