@@ -13,8 +13,9 @@
 		C80FD30E19D46A5F00B04FBA /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD30D19D46A5F00B04FBA /* Film.m */; };
 		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
 		C82C1B0019D55AFD00B38974 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = C82C1AFF19D55AFD00B38974 /* Actor.m */; };
+		C856465B1A1B2570007E27E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C856465A1A1B2570007E27E8 /* SystemConfiguration.framework */; };
+		C856465E1A1B26C9007E27E8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C856465D1A1B26C9007E27E8 /* Reachability.m */; };
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
-		C87A226F1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */; };
 		C87A22721A11012500A8419A /* CinemaniaLanguagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */; };
 		C892607819FFCC7E0040DFB8 /* movie_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C892607719FFCC7E0040DFB8 /* movie_placeholder.png */; };
 		C894CAE419DC406000DA9697 /* TMDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C894CAE319DC406000DA9697 /* TMDBClient.m */; };
@@ -65,11 +66,12 @@
 		C80FD31019D46A6000B04FBA /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		C82C1AFE19D55AFD00B38974 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
+		C856465A1A1B2570007E27E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C856465C1A1B26C9007E27E8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "../../../../../../Downloads/Reachability-master/Reachability.h"; sourceTree = "<group>"; };
+		C856465D1A1B26C9007E27E8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../../../../../Downloads/Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
 		C879B11B1A1A5F3C004C5E80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C87A226D1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaniaSettingsTableViewController.h; sourceTree = "<group>"; };
-		C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaniaSettingsTableViewController.m; sourceTree = "<group>"; };
 		C87A22701A11012500A8419A /* CinemaniaLanguagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaniaLanguagesTableViewController.h; sourceTree = "<group>"; };
 		C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaniaLanguagesTableViewController.m; sourceTree = "<group>"; };
 		C892607719FFCC7E0040DFB8 /* movie_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie_placeholder.png; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C856465B1A1B2570007E27E8 /* SystemConfiguration.framework in Frameworks */,
 				C8C8343019C3210500563D95 /* CoreGraphics.framework in Frameworks */,
 				C8C8343419C3210500563D95 /* CoreData.framework in Frameworks */,
 				C8C8343219C3210500563D95 /* UIKit.framework in Frameworks */,
@@ -159,6 +162,8 @@
 		C876EFF719C6FD0C005F0225 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				C856465C1A1B26C9007E27E8 /* Reachability.h */,
+				C856465D1A1B26C9007E27E8 /* Reachability.m */,
 				B2D290B78E9A674FDA05B06A /* MoviesDataController.h */,
 				B2D291316C2978983B5484DE /* MoviesDataController.m */,
 				C894CAE219DC406000DA9697 /* TMDBClient.h */,
@@ -205,6 +210,7 @@
 		C8C8342C19C3210500563D95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C856465A1A1B2570007E27E8 /* SystemConfiguration.framework */,
 				C8C8342D19C3210500563D95 /* Foundation.framework */,
 				C8C8342F19C3210500563D95 /* CoreGraphics.framework */,
 				C8C8343119C3210500563D95 /* UIKit.framework */,
@@ -276,8 +282,6 @@
 				C8C8344B19C3210500563D95 /* CinemaniaDetailViewController.m */,
 				C8E9D07819F6A39300DEA044 /* MovieCell.h */,
 				C8E9D07919F6A39300DEA044 /* MovieCell.m */,
-				C87A226D1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.h */,
-				C87A226E1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m */,
 				C87A22701A11012500A8419A /* CinemaniaLanguagesTableViewController.h */,
 				C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */,
 			);
@@ -399,9 +403,9 @@
 				C82C1B0019D55AFD00B38974 /* Actor.m in Sources */,
 				B2D29F4073EC6DD9F2AC625D /* MoviesDataController.m in Sources */,
 				B2D293ABD046D3B6D93AA288 /* LocalMoviesStore.m in Sources */,
-				C87A226F1A10FFCC00A8419A /* CinemaniaSettingsTableViewController.m in Sources */,
 				B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */,
 				C87A22721A11012500A8419A /* CinemaniaLanguagesTableViewController.m in Sources */,
+				C856465E1A1B26C9007E27E8 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

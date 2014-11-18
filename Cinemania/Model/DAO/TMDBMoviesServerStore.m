@@ -7,7 +7,7 @@
 #import "Movie.h"
 #import "Actor.h"
 #import "LocalMoviesStore.h"
-
+#import "Reachability.h"
 
 @implementation TMDBMoviesServerStore
 
@@ -37,18 +37,14 @@
                                                                                                 error:nil];
                                            @try
                                            {
-//                                               [movie setValue:json[@"runtime"] forKey:@"runtime"];
-//                                               [movie setValue:json[@"overview"] forKey:@"overview"];
                                                movie.runtime = json[@"runtime"];
                                                movie.overview = json[@"overview"];
                                            }
                                            @catch (NSException *exception)
                                            {
-//                                               [movie setValue:@(0) forKey:@"runtime"];
                                                movie.runtime = @(0);
                                            }
-
-
+                                           [[LocalMoviesStore sharedManager].managedObjectContext save:&error];
                                        }
                                    }];
 }
@@ -75,8 +71,6 @@
                                                    [movie addActorsObject:actor];
                                                }
                                            }
-
-
                                        }
                                    }];
 }
@@ -85,6 +79,23 @@
 {
     static int pageNumber=1;
     static BOOL isFirstAppRun=YES;
+    static BOOL connectionChecked=NO;
+    if (!connectionChecked)
+    {
+        Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+        NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+        if (networkStatus == NotReachable)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're offline"
+                                                            message:@"Check your connection to get latest movies."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [moviesDataController.delegate moviesLoadingComplete];
+        }
+        connectionChecked=YES;
+    }
     [[TMDBClient sharedManager] getMoviesFromCategory:TMDBMoviePopular
                                        withParameters:@{@"page":@(pageNumber)}
                                    usingResponseBlock:^(NSURLResponse *response, NSData *data, NSError *error)
@@ -100,7 +111,7 @@
                                            id json=[NSJSONSerialization JSONObjectWithData:data
                                                                                    options:NSJSONReadingMutableContainers
                                                                                      error:nil];
-                                           // NSLog(@"Your JSON Object: %@", json);
+                                           
                                            NSArray *dictsArray = [json objectForKey:@"results"];
                                            for (NSDictionary* dict in dictsArray)
                                            {
@@ -128,7 +139,7 @@
                                 }];
 }
 
-- (NSURL *) prepareTrailerLinkByMovieId:(NSNumber *)movieId
+- (NSURL *)prepareTrailerLinkByMovieId:(NSNumber *)movieId
 {
     NSData *jsonData = [[TMDBClient sharedManager] getJsonDataForTrailerByMovieId:movieId];
     if (jsonData != nil)
