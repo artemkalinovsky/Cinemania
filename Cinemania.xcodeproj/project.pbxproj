@@ -14,7 +14,6 @@
 		C80FD31119D46A6000B04FBA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C80FD31019D46A6000B04FBA /* Movie.m */; };
 		C82C1B0019D55AFD00B38974 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = C82C1AFF19D55AFD00B38974 /* Actor.m */; };
 		C856465B1A1B2570007E27E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C856465A1A1B2570007E27E8 /* SystemConfiguration.framework */; };
-		C856465E1A1B26C9007E27E8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C856465D1A1B26C9007E27E8 /* Reachability.m */; };
 		C876EFFD19C6FE4A005F0225 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = C876EFFC19C6FE4A005F0225 /* TVShow.m */; };
 		C87A22721A11012500A8419A /* CinemaniaLanguagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87A22711A11012500A8419A /* CinemaniaLanguagesTableViewController.m */; };
 		C892607819FFCC7E0040DFB8 /* movie_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C892607719FFCC7E0040DFB8 /* movie_placeholder.png */; };
@@ -41,6 +40,7 @@
 		C8C8346219C3210600563D95 /* CinemaniaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C8346119C3210600563D95 /* CinemaniaTests.m */; };
 		C8E9D07719F6A23100DEA044 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8E9D07619F6A23100DEA044 /* MovieCell.xib */; };
 		C8E9D07A19F6A39300DEA044 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E9D07919F6A39300DEA044 /* MovieCell.m */; };
+		C8FC680D1A230E70000E9B09 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FC680C1A230E70000E9B09 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,6 @@
 		C82C1AFE19D55AFD00B38974 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		C82C1AFF19D55AFD00B38974 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		C856465A1A1B2570007E27E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		C856465C1A1B26C9007E27E8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "../../../../../../Downloads/Reachability-master/Reachability.h"; sourceTree = "<group>"; };
-		C856465D1A1B26C9007E27E8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../../../../../Downloads/Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 		C876EFFB19C6FE4A005F0225 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
 		C876EFFC19C6FE4A005F0225 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
 		C879B11B1A1A5F3C004C5E80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -106,6 +104,8 @@
 		C8E9D07619F6A23100DEA044 /* MovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		C8E9D07819F6A39300DEA044 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		C8E9D07919F6A39300DEA044 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
+		C8FC680B1A230E70000E9B09 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C8FC680C1A230E70000E9B09 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,8 @@
 		C876EFF719C6FD0C005F0225 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				C856465C1A1B26C9007E27E8 /* Reachability.h */,
-				C856465D1A1B26C9007E27E8 /* Reachability.m */,
+				C8FC680B1A230E70000E9B09 /* Reachability.h */,
+				C8FC680C1A230E70000E9B09 /* Reachability.m */,
 				B2D290B78E9A674FDA05B06A /* MoviesDataController.h */,
 				B2D291316C2978983B5484DE /* MoviesDataController.m */,
 				C894CAE219DC406000DA9697 /* TMDBClient.h */,
@@ -405,7 +405,7 @@
 				B2D293ABD046D3B6D93AA288 /* LocalMoviesStore.m in Sources */,
 				B2D29538E08AEDAB0C8738CB /* TMDBMoviesServerStore.m in Sources */,
 				C87A22721A11012500A8419A /* CinemaniaLanguagesTableViewController.m in Sources */,
-				C856465E1A1B26C9007E27E8 /* Reachability.m in Sources */,
+				C8FC680D1A230E70000E9B09 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
